@@ -2,7 +2,7 @@
     "name": "sort-imports",
     "displayName": "sort-imports",
     "description": "Sort ES6 imports automatically.",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "galleryBanner": {
         "color": "#2980b9",
         "theme": "dark"
@@ -14,7 +14,7 @@
         "type": "git",
         "url": "https://github.com/peterjuras/vsc-sort-imports.git"
     },
-    "icon": "assets/logo.svg",
+    "icon": "assets/logo.png",
     "publisher": "peterjuras",
     "engines": {
         "vscode": "^1.0.0"
