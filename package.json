@@ -2,10 +2,10 @@
     "name": "sort-imports",
     "displayName": "sort-imports",
     "description": "Sort ES6 imports automatically.",
-    "version": "1.0.0",
+    "version": "1.0.2",
     "galleryBanner": {
         "color": "#2980b9",
-        "theme": "light"
+        "theme": "dark"
     },
     "bugs": {
         "url": "https://github.com/peterjuras/vsc-sort-imports/issues"

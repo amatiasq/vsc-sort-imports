@@ -1,4 +1,4 @@
-# sort-imports README
+# sort-imports
 
 Sort ES6 imports automatically. Ported from the [atom-import-sort](https://atom.io/packages/atom-import-sort) package by [Renke Grunwald](https://github.com/renke).
 
