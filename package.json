@@ -19,8 +19,11 @@
   "engines": {
     "vscode": "^1.0.0"
   },
+  "homepage": "https://github.com/peterjuras/vsc-sort-imports/blob/master/README.md",
   "license": "ISC",
   "categories": [
+    "Productivity",
+    "Languages",
     "Other"
   ],
   "keywords": [
