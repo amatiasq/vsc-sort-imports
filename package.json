@@ -1,76 +1,71 @@
 {
-  "name": "sort-imports",
-  "displayName": "sort-imports",
-  "description": "Sort ES6 imports automatically.",
-  "version": "0.0.1",
-  "galleryBanner": {
-    "color": "#2980b9",
-    "theme": "light"
-  },
-  "bugs": {
-    "url": "https://github.com/peterjuras/vsc-sort-imports/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/peterjuras/vsc-sort-imports.git"
-  },
-  "icon": "assets/logo.svg",
-  "publisher": "peterjuras",
-  "engines": {
-    "vscode": "^1.0.0"
-  },
-  "homepage": "https://github.com/peterjuras/vsc-sort-imports/blob/master/README.md",
-  "license": "ISC",
-  "categories": [
-    "Productivity",
-    "Languages",
-    "Other"
-  ],
-  "keywords": [
-    "ES6",
-    "ES7",
-    "Sort",
-    "Sorting",
-    "Imports",
-    "Import",
-    "ES2015",
-    "ES2016",
-    "ES2017"
-  ],
-  "activationEvents": [
-    "onCommand:extension.sortImports",
-    "onLanguage:javascript",
-    "onLanguage:javascriptreact"
-  ],
-  "main": "./out/src/extension",
-  "contributes": {
-    "commands": [
-      {
-        "command": "sortImports.sort",
-        "title": "Sort Imports"
-      }
+    "name": "sort-imports",
+    "displayName": "sort-imports",
+    "description": "Sort ES6 imports automatically.",
+    "version": "1.0.0",
+    "galleryBanner": {
+        "color": "#2980b9",
+        "theme": "light"
+    },
+    "bugs": {
+        "url": "https://github.com/peterjuras/vsc-sort-imports/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/peterjuras/vsc-sort-imports.git"
+    },
+    "icon": "assets/logo.svg",
+    "publisher": "peterjuras",
+    "engines": {
+        "vscode": "^1.0.0"
+    },
+    "homepage": "https://github.com/peterjuras/vsc-sort-imports/blob/master/README.md",
+    "license": "ISC",
+    "categories": [
+        "Languages",
+        "Other"
     ],
-    "configuration": {
-      "title": "Sort Imports configuration",
-      "properties": {
-        "sortImports.onSave": {
-          "type": "boolean",
-          "default": true,
-          "description": "Automatically sort imports on save."
+    "keywords": [
+        "ES6",
+        "ES2015",
+        "Sort",
+        "Sorting",
+        "Import"
+    ],
+    "activationEvents": [
+        "onCommand:extension.sortImports",
+        "onLanguage:javascript",
+        "onLanguage:javascriptreact"
+    ],
+    "main": "./out/src/extension",
+    "contributes": {
+        "commands": [
+            {
+                "command": "sortImports.sort",
+                "title": "Sort Imports"
+            }
+        ],
+        "configuration": {
+            "title": "Sort Imports configuration",
+            "properties": {
+                "sortImports.onSave": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Automatically sort imports on save."
+                }
+            }
         }
-      }
+    },
+    "scripts": {
+        "vscode:prepublish": "node ./node_modules/vscode/bin/compile",
+        "compile": "node ./node_modules/vscode/bin/compile -watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install"
+    },
+    "devDependencies": {
+        "typescript": "^1.8.5",
+        "vscode": "^0.11.0"
+    },
+    "dependencies": {
+        "import-sort": "0.5.0"
     }
-  },
-  "scripts": {
-    "vscode:prepublish": "node ./node_modules/vscode/bin/compile",
-    "compile": "node ./node_modules/vscode/bin/compile -watch -p ./",
-    "postinstall": "node ./node_modules/vscode/bin/install"
-  },
-  "devDependencies": {
-    "typescript": "^1.8.5",
-    "vscode": "^0.11.0"
-  },
-  "dependencies": {
-    "import-sort": "0.5.0"
-  }
 }
