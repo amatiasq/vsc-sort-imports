@@ -16,9 +16,7 @@ function sort(document: TextDocument): string {
 
     const currentText = document.getText();
     try {
-        const sortedText = importSort(currentText);
-        // return null if sorted text is the same as the current text
-        return currentText !== sortedText ? sortedText : null;
+        return importSort(currentText);
     } catch (exception) {
         window.showWarningMessage(`Could not sort imports. - ${exception}`);
         return null;
@@ -28,6 +26,7 @@ function sort(document: TextDocument): string {
 function getMaxRange() : Range {
     return new Range(0, 0, Number.MAX_VALUE, Number.MAX_VALUE);
 }
+
 export function sortImports() {
     const { activeTextEditor: editor } = window;
     const { document } = editor;
@@ -39,6 +38,13 @@ export function sortImports() {
     editor.edit(edit => {
         edit.replace(getMaxRange(), sortedText);
     });
+}
+
+export function saveWithoutSorting() {
+    const { activeTextEditor: editor } = window;
+    const { document } = editor;
+    document['sortedImports'] = true;
+    document.save();
 }
 
 export function sortImportsOnSave(document: TextDocument) {

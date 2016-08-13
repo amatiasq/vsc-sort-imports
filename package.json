@@ -42,7 +42,11 @@
         "commands": [
             {
                 "command": "sortImports.sort",
-                "title": "Sort Imports"
+                "title": "Sort imports"
+            },
+            {
+                "command": "sortImports.saveWithoutSorting",
+                "title": "Save file without sorting imports"
             }
         ],
         "configuration": {

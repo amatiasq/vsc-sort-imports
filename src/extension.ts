@@ -4,14 +4,18 @@ import {
     ExtensionContext,
     workspace
 } from 'vscode';
-import { sortImports, sortImportsOnSave } from './sort';
+import { saveWithoutSorting, sortImports, sortImportsOnSave } from './sort';
 
 export function activate(context: ExtensionContext) {
-    const menuCommand = commands.registerCommand('sortImports.sort', () => {
+    context.subscriptions.push(commands.registerCommand('sortImports.sort', () => {
         sortImports();
-    });
+    }));
+
+    context.subscriptions.push(commands.registerCommand('sortImports.saveWithoutSorting', () => {
+        saveWithoutSorting();
+    }));
+
     workspace.onDidSaveTextDocument(sortImportsOnSave);
-    context.subscriptions.push(menuCommand);
 }
 
 export function deactivate() { }
