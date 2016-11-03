@@ -7,7 +7,8 @@ import {
     workspace,
     WorkspaceEdit
 } from 'vscode';
-const importSort = require('import-sort');
+import importSort from 'import-sort';
+import { getConfig } from 'import-sort-config';
 
 function sort(document: TextDocument): string {
     const languageRegex = /^(java|type)script(react)*$/;
@@ -16,8 +17,10 @@ function sort(document: TextDocument): string {
     }
 
     const currentText = document.getText();
+    const extension = document.fileName.substring(document.fileName.lastIndexOf('.'));
     try {
-        return importSort(currentText);
+        const config = getConfig(extension);
+        return importSort(currentText, config.parser, config.style).code;
     } catch (exception) {
         window.showWarningMessage(`Could not sort imports. - ${exception}`);
         return null;

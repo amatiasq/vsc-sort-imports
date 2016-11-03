@@ -1,6 +1,6 @@
 # sort-imports
 
-Sort ES6 imports automatically. Ported from the [atom-import-sort](https://atom.io/packages/atom-import-sort) package by [Renke Grunwald](https://github.com/renke).
+Sort ES6 imports for JavaScript and TypeScript automatically. Ported from the [atom-import-sort](https://atom.io/packages/atom-import-sort) package by [Renke Grunwald](https://github.com/renke).
 
 ![Sort Example](http://i.imgur.com/XEzc7EU.gif)
 
@@ -23,6 +23,12 @@ This extension has the following setting:
 * `sortImports.onSave`: enable/disable auto sorting on save (default: enabled)
 
 ## Release Notes
+
+### 2.0.0
+
+- **Added TypeScript support**
+- Fixed inline comments on import statements
+- Thanks to @shalomdotnet for the [PR](https://github.com/peterjuras/vsc-sort-imports/pull/2)!
 
 #### 1.1.0
 
