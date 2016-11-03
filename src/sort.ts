@@ -10,7 +10,8 @@ import {
 const importSort = require('import-sort');
 
 function sort(document: TextDocument): string {
-    if (!document.languageId.startsWith('javascript')) {
+    const languageRegex = /^(java|type)script(react)*$/;
+    if (!document.languageId.match(languageRegex)) {
         return;
     }
 

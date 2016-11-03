@@ -35,7 +35,9 @@
     "activationEvents": [
         "onCommand:extension.sortImports",
         "onLanguage:javascript",
-        "onLanguage:javascriptreact"
+        "onLanguage:javascriptreact",
+        "onLanguage:typescript",
+        "onLanguage:typescriptreact"
     ],
     "main": "./out/src/extension",
     "contributes": {
