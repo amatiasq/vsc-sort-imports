@@ -1,14 +1,17 @@
 'use strict';
+
 import {
     Position,
     Range,
     TextDocument,
+    WorkspaceEdit,
     window,
     workspace,
-    WorkspaceEdit
 } from 'vscode';
+import {dirname, extname} from 'path';
+
+import {getConfig} from 'import-sort-config';
 import importSort from 'import-sort';
-import { getConfig } from 'import-sort-config';
 
 function sort(document: TextDocument): string {
     const languageRegex = /^(java|type)script(react)*$/;
@@ -17,9 +20,13 @@ function sort(document: TextDocument): string {
     }
 
     const currentText = document.getText();
-    const extension = document.fileName.substring(document.fileName.lastIndexOf('.'));
+
+    const fileName = document.fileName;
+    const extension = extname(fileName);
+    const directory = dirname(fileName);
+
     try {
-        const config = getConfig(extension);
+        const config = getConfig(extension, directory);
         return importSort(currentText, config.parser, config.style).code;
     } catch (exception) {
         window.showWarningMessage(`Could not sort imports. - ${exception}`);
