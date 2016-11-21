@@ -24,6 +24,10 @@ This extension has the following setting:
 
 ## Release Notes
 
+#### 2.1.0
+
+- It is now possible to customize the import sort style. Please refer to the [import-sort documentation](https://github.com/renke/import-sort#using-a-different-style-or-parser) for more information.
+
 ### 2.0.0
 
 - **Added TypeScript support**
