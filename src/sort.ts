@@ -29,7 +29,9 @@ function sort(document: TextDocument): string {
         const config = getConfig(extension, directory);
         return importSort(currentText, config.parser, config.style).code;
     } catch (exception) {
-        window.showWarningMessage(`Could not sort imports. - ${exception}`);
+        if (!workspace.getConfiguration("sortImports").get("suppressWarnings")) {
+            window.showWarningMessage(`Could not sort imports. - ${exception}`);
+        }
         return null;
     }
 }

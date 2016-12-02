@@ -2,7 +2,7 @@
     "name": "sort-imports",
     "displayName": "sort-imports",
     "description": "Sort ES6 imports automatically.",
-    "version": "2.1.0",
+    "version": "2.2.0",
     "galleryBanner": {
         "color": "#2980b9",
         "theme": "dark"
@@ -58,6 +58,11 @@
                     "type": "boolean",
                     "default": true,
                     "description": "Automatically sort imports on save."
+                },
+                "sortImports.suppressWarnings": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Suppress warnings when sorting fails."
                 }
             }
         }

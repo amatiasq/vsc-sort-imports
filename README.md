@@ -20,9 +20,14 @@ You can also save the document without saving imports. This could become handy w
 
 This extension has the following setting:
 
-* `sortImports.onSave`: enable/disable auto sorting on save (default: enabled)
+* `sortImports.onSave`: enable/disable auto sorting on save (default: true)
+* `sortImports.suppressWarnings`: suppress warnings if sorting imports fails (default: false)
 
 ## Release Notes
+
+#### 2.2.0
+
+- Added setting to suppress warnings. Set `sortImports.suppressWarnings` to `true` to hide warnings if sorting imports fails.
 
 #### 2.1.0
 
