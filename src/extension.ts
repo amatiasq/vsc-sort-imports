@@ -1,8 +1,9 @@
 'use strict';
+
 import {
-    commands,
     ExtensionContext,
-    workspace
+    commands,
+    workspace,
 } from 'vscode';
 import { saveWithoutSorting, sortImports, sortImportsOnSave } from './sort';
 
@@ -15,7 +16,7 @@ export function activate(context: ExtensionContext) {
         saveWithoutSorting();
     }));
 
-    workspace.onDidSaveTextDocument(sortImportsOnSave);
+    workspace.onWillSaveTextDocument(sortImportsOnSave);
 }
 
 export function deactivate() { }

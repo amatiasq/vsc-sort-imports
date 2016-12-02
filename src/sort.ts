@@ -4,6 +4,7 @@ import {
     Position,
     Range,
     TextDocument,
+    TextDocumentWillSaveEvent,
     WorkspaceEdit,
     window,
     workspace,
@@ -60,13 +61,8 @@ export function saveWithoutSorting() {
     document.save();
 }
 
-export function sortImportsOnSave(document: TextDocument) {
+export function sortImportsOnSave({ document }: TextDocumentWillSaveEvent) {
     if (!workspace.getConfiguration("sortImports").get("onSave")) {
-        return;
-    }
-
-    if (document['sortedImports']) {
-        delete document['sortedImports'];
         return;
     }
 
@@ -75,7 +71,6 @@ export function sortImportsOnSave(document: TextDocument) {
         return;
     }
 
-    document['sortedImports'] = true;
     const workspaceEdit = new WorkspaceEdit();
     workspaceEdit.replace(document.uri, getMaxRange(), sortedText);
     return workspace.applyEdit(workspaceEdit)
