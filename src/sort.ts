@@ -14,6 +14,8 @@ import {dirname, extname} from 'path';
 import {getConfig} from 'import-sort-config';
 import importSort from 'import-sort';
 
+const skipSortingKey = 'sortImports.skipSorting';
+
 function sort(document: TextDocument): string {
     const languageRegex = /^(java|type)script(react)*$/;
     if (!document.languageId.match(languageRegex)) {
@@ -49,7 +51,7 @@ export function sortImports() {
         return;
     }
 
-    editor.edit(edit => {
+    return editor.edit(edit => {
         edit.replace(getMaxRange(), sortedText);
     });
 }
@@ -57,11 +59,16 @@ export function sortImports() {
 export function saveWithoutSorting() {
     const { activeTextEditor: editor } = window;
     const { document } = editor;
-    document['sortedImports'] = true;
-    document.save();
+    document[skipSortingKey] = true;
+    return document.save();
 }
 
 export function sortImportsOnSave({ document }: TextDocumentWillSaveEvent) {
+    if (document[skipSortingKey]) {
+        delete document[skipSortingKey];
+        return;
+    }
+
     if (!workspace.getConfiguration("sortImports").get("onSave")) {
         return;
     }
