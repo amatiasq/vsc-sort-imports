@@ -5,13 +5,16 @@ import {
     commands,
     workspace,
 } from 'vscode';
-import { saveWithoutSorting, sortImports, sortImportsOnSave } from './sort';
+import { saveWithoutSorting, sortImports } from './sort';
+
+import { updateSaveRegistration } from './registration';
 
 export function activate(context: ExtensionContext) {
     context.subscriptions.push(commands.registerCommand('sortImports.sort', sortImports));
     context.subscriptions.push(commands.registerCommand('sortImports.saveWithoutSorting', saveWithoutSorting));
 
-    workspace.onWillSaveTextDocument(sortImportsOnSave);
+    updateSaveRegistration();
+    workspace.onDidChangeConfiguration(updateSaveRegistration);
 }
 
 export function deactivate() { }

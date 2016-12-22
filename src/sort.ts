@@ -1,20 +1,17 @@
 'use strict';
 
 import {
-    Position,
     Range,
     TextDocument,
     TextDocumentWillSaveEvent,
-    WorkspaceEdit,
     window,
     workspace,
 } from 'vscode';
-import {dirname, extname} from 'path';
+import { dirname, extname } from 'path';
+import { registerWillSaveTextDocument, unregisterWillSaveTextDocument } from './registration';
 
-import {getConfig} from 'import-sort-config';
+import { getConfig } from 'import-sort-config';
 import importSort from 'import-sort';
-
-const skipSortingKey = 'sortImports.skipSorting';
 
 function sort(document: TextDocument): string {
     const languageRegex = /^(java|type)script(react)*$/;
@@ -43,9 +40,10 @@ function getMaxRange() : Range {
     return new Range(0, 0, Number.MAX_VALUE, Number.MAX_VALUE);
 }
 
-export function sortImports() {
+export function sortImports(doc = null) {
     const { activeTextEditor: editor } = window;
-    const { document } = editor;
+    const document = doc || editor.document;
+
     const sortedText = sort(document);
     if (!sortedText) {
         return;
@@ -56,30 +54,14 @@ export function sortImports() {
     });
 }
 
-export function saveWithoutSorting() {
-    const { activeTextEditor: editor } = window;
-    const { document } = editor;
-    document[skipSortingKey] = true;
-    return document.save();
+export function sortImportsOnSave({ document }: TextDocumentWillSaveEvent) {
+    return sortImports(document);
 }
 
-export function sortImportsOnSave({ document }: TextDocumentWillSaveEvent) {
-    if (document[skipSortingKey]) {
-        delete document[skipSortingKey];
-        return;
-    }
+export async function saveWithoutSorting() {
+    const { document } = window.activeTextEditor;
 
-    if (!workspace.getConfiguration("sortImports").get("onSave")) {
-        return;
-    }
-
-    const sortedText = sort(document);
-    if (!sortedText) {
-        return;
-    }
-
-    const workspaceEdit = new WorkspaceEdit();
-    workspaceEdit.replace(document.uri, getMaxRange(), sortedText);
-    return workspace.applyEdit(workspaceEdit)
-        .then(() => document.save());
+    unregisterWillSaveTextDocument();
+    await document.save();
+    registerWillSaveTextDocument();
 }
