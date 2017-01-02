@@ -4,6 +4,8 @@ import {
     Range,
     TextDocument,
     TextDocumentWillSaveEvent,
+    TextEdit,
+    TextEditor,
     window,
     workspace,
 } from 'vscode';
@@ -36,13 +38,15 @@ function sort(document: TextDocument): string {
     }
 }
 
-function getMaxRange() : Range {
+function getMaxRange(): Range {
     return new Range(0, 0, Number.MAX_VALUE, Number.MAX_VALUE);
 }
 
-export function sortImports(doc = null) {
-    const { activeTextEditor: editor } = window;
-    const document = doc || editor.document;
+export function sortImports() {
+    const {
+        activeTextEditor: editor,
+        activeTextEditor: { document }
+    } = window;
 
     const sortedText = sort(document);
     if (!sortedText) {
@@ -54,8 +58,14 @@ export function sortImports(doc = null) {
     });
 }
 
-export function sortImportsOnSave({ document }: TextDocumentWillSaveEvent) {
-    return sortImports(document);
+export function sortImportsOnSave({ document, waitUntil }: TextDocumentWillSaveEvent) {
+    const sortedText = sort(document);
+    if (!sortedText) {
+        return;
+    }
+
+    const edits = Promise.resolve([new TextEdit(getMaxRange(), sortedText)]);
+    waitUntil(edits);
 }
 
 export async function saveWithoutSorting() {
