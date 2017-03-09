@@ -84,6 +84,7 @@
         "import-sort-config": "2.4.0",
         "import-sort-parser-babylon": "2.3.0",
         "import-sort-parser-typescript": "2.2.1",
-        "import-sort-style-eslint": "2.4.0"
+        "import-sort-style-eslint": "2.4.0",
+        "import-sort-style-module": "2.4.0"
     }
 }
