@@ -25,6 +25,10 @@ This extension has the following settings:
 
 ## Release Notes
 
+#### 2.3.0
+
+- Import sort style `module` is now included by default alongside the `eslint` style.
+
 #### 2.2.0
 
 - Added setting to suppress warnings. Set `sortImports.suppressWarnings` to `true` to hide warnings if sorting imports fails.
