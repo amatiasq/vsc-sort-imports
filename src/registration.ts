@@ -21,8 +21,12 @@ export function registerWillSaveTextDocument() {
   saveRegistration = workspace.onWillSaveTextDocument(sortImportsOnSave);
 }
 
+export function getOnSaveSetting() {
+  return workspace.getConfiguration("sortImports").get("onSave");
+}
+
 export function updateSaveRegistration() {
-    if (workspace.getConfiguration("sortImports").get("onSave")) {
+    if (getOnSaveSetting()) {
         registerWillSaveTextDocument();
     } else {
         unregisterWillSaveTextDocument();

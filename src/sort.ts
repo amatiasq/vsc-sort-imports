@@ -10,7 +10,11 @@ import {
     workspace,
 } from 'vscode';
 import { dirname, extname } from 'path';
-import { registerWillSaveTextDocument, unregisterWillSaveTextDocument } from './registration';
+import {
+    getOnSaveSetting,
+    registerWillSaveTextDocument,
+    unregisterWillSaveTextDocument,
+} from './registration';
 
 import { getConfig } from 'import-sort-config';
 import importSort from 'import-sort';
@@ -73,5 +77,7 @@ export async function saveWithoutSorting() {
 
     unregisterWillSaveTextDocument();
     await document.save();
-    registerWillSaveTextDocument();
+    if (getOnSaveSetting()) {
+        registerWillSaveTextDocument();
+    }
 }
