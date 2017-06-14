@@ -5,7 +5,10 @@ import {
     commands,
     workspace,
 } from 'vscode';
-import { saveWithoutSorting, sortImports } from './sort';
+import {
+    saveWithoutSorting,
+    sortImports,
+} from './sort';
 
 import { updateSaveRegistration } from './registration';
 

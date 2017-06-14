@@ -1,6 +1,15 @@
 'use strict';
 
 import {
+    getOnSaveSetting,
+    registerWillSaveTextDocument,
+    unregisterWillSaveTextDocument,
+} from './registration';
+import myStyle from './style';
+import { getConfig } from 'import-sort-config';
+import importSort from 'import-sort';
+import { dirname, extname } from 'path';
+import {
     Range,
     TextDocument,
     TextDocumentWillSaveEvent,
@@ -9,15 +18,6 @@ import {
     window,
     workspace,
 } from 'vscode';
-import { dirname, extname } from 'path';
-import {
-    getOnSaveSetting,
-    registerWillSaveTextDocument,
-    unregisterWillSaveTextDocument,
-} from './registration';
-
-import { getConfig } from 'import-sort-config';
-import importSort from 'import-sort';
 
 function sort(document: TextDocument): string {
     const languageRegex = /^(java|type)script(react)*$/;
@@ -33,7 +33,16 @@ function sort(document: TextDocument): string {
 
     try {
         const config = getConfig(extension, directory);
-        return importSort(currentText, config.parser, config.style).code;
+        const result = importSort(currentText, config.parser, myStyle);
+        const change = result.changes[0];
+
+        if (change) {
+            const before = result.code.substr(0, change.end);
+            const after = result.code.substr(change.end);
+            result.code = before + '\n' + after;
+        }
+
+        return result.code;
     } catch (exception) {
         if (!workspace.getConfiguration("sortImports").get("suppressWarnings")) {
             window.showWarningMessage(`Could not sort imports. - ${exception}`);

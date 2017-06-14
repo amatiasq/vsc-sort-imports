@@ -5,7 +5,10 @@
         "outDir": "out",
         "lib": [ "es6" ],
         "sourceMap": true,
-        "rootDir": "."
+        "rootDir": ".",
+        "typeRoots": [
+            "./node_modules/@types"
+        ]
     },
     "exclude": [
         "node_modules",

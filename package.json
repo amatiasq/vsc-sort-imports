@@ -1,25 +1,25 @@
 {
-  "name": "sort-imports",
-  "displayName": "sort-imports",
+  "name": "amq-sort-imports",
+  "displayName": "amq-sort-imports",
   "description": "Sort ES6 imports automatically.",
-  "version": "2.3.1",
+  "version": "2.4.2",
   "galleryBanner": {
     "color": "#2980b9",
     "theme": "dark"
   },
   "bugs": {
-    "url": "https://github.com/peterjuras/vsc-sort-imports/issues"
+    "url": "https://github.com/amatiasq/vsc-sort-imports/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/peterjuras/vsc-sort-imports.git"
+    "url": "https://github.com/amatiasq/vsc-sort-imports.git"
   },
   "icon": "assets/logo.png",
-  "publisher": "peterjuras",
+  "publisher": "amatiasq",
   "engines": {
     "vscode": "^1.6.0"
   },
-  "homepage": "https://github.com/peterjuras/vsc-sort-imports/blob/master/README.md",
+  "homepage": "https://github.com/amatiasq/vsc-sort-imports/blob/master/README.md",
   "license": "ISC",
   "categories": [
     "Languages",
@@ -80,6 +80,7 @@
     "vscode": "^1.0.3"
   },
   "dependencies": {
+    "@types/core-js": "^0.9.41",
     "import-sort": "2.4.0",
     "import-sort-config": "2.4.0",
     "import-sort-parser-babylon": "2.3.0",
