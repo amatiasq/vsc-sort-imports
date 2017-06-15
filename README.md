@@ -1,3 +1,7 @@
+# amq-sort-imports
+
+A for from [`sort-imports`](https://github.com/peterjuras/vsc-sort-imports.git) to add features.
+
 # sort-imports
 
 Sort ES6 imports for JavaScript and TypeScript automatically. Ported from the [atom-import-sort](https://atom.io/packages/atom-import-sort) package by [Renke Grunwald](https://github.com/renke).
@@ -24,6 +28,11 @@ This extension has the following settings:
 * `sortImports.suppressWarnings`: suppress warnings if sorting imports fails (default: false)
 
 ## Release Notes
+
+#### 2.4.0
+
+- Import style `by-module-name` added.
+- Added support for blank lines after imports.
 
 #### 2.3.0
 

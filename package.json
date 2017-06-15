@@ -2,7 +2,7 @@
   "name": "amq-sort-imports",
   "displayName": "amq-sort-imports",
   "description": "Sort ES6 imports automatically.",
-  "version": "2.4.2",
+  "version": "2.4.3",
   "galleryBanner": {
     "color": "#2980b9",
     "theme": "dark"
@@ -33,7 +33,7 @@
     "Import"
   ],
   "activationEvents": [
-    "onCommand:extension.sortImports",
+    "onCommand:extension.amqSortImports",
     "onLanguage:javascript",
     "onLanguage:javascriptreact",
     "onLanguage:typescript",
@@ -43,23 +43,33 @@
   "contributes": {
     "commands": [
       {
-        "command": "sortImports.sort",
+        "command": "amqSortImports.sort",
         "title": "Sort imports"
       },
       {
-        "command": "sortImports.saveWithoutSorting",
+        "command": "amqSortImports.saveWithoutSorting",
         "title": "Save file without sorting imports"
       }
     ],
     "configuration": {
       "title": "Sort Imports configuration",
       "properties": {
-        "sortImports.onSave": {
+        "amqSortImports.blankLinesAfter": {
+          "type": "string",
+          "default": true,
+          "description": "Blank lines after import declarations."
+        },
+        "amqSortImports.sortType": {
+          "type": "string",
+          "default": "by-module-name",
+          "description": "Sorting algorithm."
+        },
+        "amqSortImports.onSave": {
           "type": "boolean",
           "default": true,
           "description": "Automatically sort imports on save."
         },
-        "sortImports.suppressWarnings": {
+        "amqSortImports.suppressWarnings": {
           "type": "boolean",
           "default": false,
           "description": "Suppress warnings when sorting fails."

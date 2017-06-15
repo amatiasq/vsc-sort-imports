@@ -1,23 +1,18 @@
-'use strict';
-
+import onSave from './on-save';
+import { saveWithoutSorting, sortCurrentDocument } from './sort';
 import {
     ExtensionContext,
     commands,
     workspace,
 } from 'vscode';
-import {
-    saveWithoutSorting,
-    sortImports,
-} from './sort';
 
-import { updateSaveRegistration } from './registration';
 
-export function activate(context: ExtensionContext) {
-    context.subscriptions.push(commands.registerCommand('sortImports.sort', sortImports));
-    context.subscriptions.push(commands.registerCommand('sortImports.saveWithoutSorting', saveWithoutSorting));
+export function activate({ subscriptions }: ExtensionContext) {
+    subscriptions.push(commands.registerCommand('amqSortImports.sort', sortCurrentDocument));
+    subscriptions.push(commands.registerCommand('amqSortImports.saveWithoutSorting', saveWithoutSorting));
 
-    updateSaveRegistration();
-    workspace.onDidChangeConfiguration(updateSaveRegistration);
+    onSave.update();
+    workspace.onDidChangeConfiguration(() => onSave.update());
 }
 
 export function deactivate() { }

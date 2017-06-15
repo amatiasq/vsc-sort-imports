@@ -1,61 +1,57 @@
-'use strict';
-
-import {
-    getOnSaveSetting,
-    registerWillSaveTextDocument,
-    unregisterWillSaveTextDocument,
-} from './registration';
-import myStyle from './style';
+import onSave from './on-save';
+import styles from './styles';
+import { getConfiguration, getMaxRange } from './utils';
 import { getConfig } from 'import-sort-config';
 import importSort from 'import-sort';
 import { dirname, extname } from 'path';
-import {
-    Range,
-    TextDocument,
-    TextDocumentWillSaveEvent,
-    TextEdit,
-    TextEditor,
-    window,
-    workspace,
-} from 'vscode';
+import { TextDocument, window } from 'vscode';
 
-function sort(document: TextDocument): string {
-    const languageRegex = /^(java|type)script(react)*$/;
-    if (!document.languageId.match(languageRegex)) {
+
+const validLanguages = /^(java|type)script(react)*$/;
+
+
+export function sort(document: TextDocument): string {
+    if (!document.languageId.match(validLanguages)) {
         return;
     }
 
     const currentText = document.getText();
-
     const fileName = document.fileName;
     const extension = extname(fileName);
     const directory = dirname(fileName);
+    const styleId = getConfiguration('sortType') as string || 'by-module-name';
+    let result;
 
     try {
         const config = getConfig(extension, directory);
-        const result = importSort(currentText, config.parser, myStyle);
-        const change = result.changes[0];
-
-        if (change) {
-            const before = result.code.substr(0, change.end);
-            const after = result.code.substr(change.end);
-            result.code = before + '\n' + after;
-        }
-
-        return result.code;
+        result = importSort(currentText, config.parser, styles[styleId]);
     } catch (exception) {
-        if (!workspace.getConfiguration("sortImports").get("suppressWarnings")) {
-            window.showWarningMessage(`Could not sort imports. - ${exception}`);
+        if (!getConfiguration('suppressWarnings')) {
+            window.showWarningMessage(`Error sorting imports: ${exception}`);
         }
         return null;
     }
+
+    // Last change contains the new import section
+    const change = result.changes.pop()
+    const blankLines = parseInt(getConfiguration('blankLinesAfter') as string, 10);
+
+    if (blankLines) {
+        if (change) {
+            const length = change.code.length;
+            const before = result.code.substr(0, length);
+            const after = result.code.substr(length);
+            result.code = before + '\n'.repeat(blankLines - 1) + after;
+        } else {
+            // TODO
+        }
+    }
+
+    return result.code;
 }
 
-function getMaxRange(): Range {
-    return new Range(0, 0, Number.MAX_VALUE, Number.MAX_VALUE);
-}
 
-export function sortImports() {
+export function sortCurrentDocument() {
     const {
         activeTextEditor: editor,
         activeTextEditor: { document }
@@ -66,27 +62,19 @@ export function sortImports() {
         return;
     }
 
-    return editor.edit(edit => {
-        edit.replace(getMaxRange(), sortedText);
-    });
+    return editor.edit(edit => edit.replace(getMaxRange(), sortedText));
 }
 
-export function sortImportsOnSave({ document, waitUntil }: TextDocumentWillSaveEvent) {
-    const sortedText = sort(document);
-    if (!sortedText) {
-        return;
-    }
 
-    const edits = Promise.resolve([new TextEdit(getMaxRange(), sortedText)]);
-    waitUntil(edits);
-}
 
 export async function saveWithoutSorting() {
     const { document } = window.activeTextEditor;
 
-    unregisterWillSaveTextDocument();
+    onSave.unregister();
     await document.save();
-    if (getOnSaveSetting()) {
-        registerWillSaveTextDocument();
+    if (onSave.isEnabled) {
+        onSave.register();
     }
 }
+
+
