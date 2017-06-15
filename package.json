@@ -2,7 +2,7 @@
   "name": "amq-sort-imports",
   "displayName": "amq-sort-imports",
   "description": "Sort ES6 imports automatically.",
-  "version": "2.4.5",
+  "version": "2.4.6",
   "galleryBanner": {
     "color": "#2980b9",
     "theme": "dark"
