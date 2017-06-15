@@ -1,6 +1,7 @@
-import sortByImports from './sort-by-imports';
-import sortByModule from './sort-by-module';
-import { IStyleAPI, IStyleItem } from 'import-sort-style';
+import { IStyleAPI, IStyleItem } from "import-sort-style";
+
+import sortByImports from "./sort-by-imports";
+import sortByModule from "./sort-by-module";
 
 
 export default {

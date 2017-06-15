@@ -1,11 +1,12 @@
-import { sort } from './sort';
-import { getConfiguration, getMaxRange }  from './utils';
 import {
     Disposable,
-    workspace,
     TextDocumentWillSaveEvent,
     TextEdit,
-} from 'vscode';
+    workspace,
+} from "vscode";
+
+import { sort } from "./sort";
+import { getConfiguration, getMaxRange }  from "./utils";
 
 
 let subscription: Disposable;
@@ -14,7 +15,7 @@ let subscription: Disposable;
 export default {
 
     get isEnabled() {
-        return getConfiguration('onSave');
+        return getConfiguration<boolean>('on-save');
     },
 
     register() {
@@ -41,6 +42,13 @@ export default {
             this.unregister();
         }
     },
+
+    bypass(action) {
+        this.unregister();
+        const result = action();
+        this.update();
+        return result;
+    }
 };
 
 

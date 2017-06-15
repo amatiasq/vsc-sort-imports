@@ -1,8 +1,11 @@
-import { workspace, Range } from 'vscode';
+import { Range, workspace } from "vscode";
 
 
-export function getConfiguration(key: string)  {
-    return workspace.getConfiguration('amqSortImports').get(key);
+export const EXTENSION_NAME = 'amq-sort-imports';
+
+
+export function getConfiguration<T>(key: string): T {
+    return workspace.getConfiguration(EXTENSION_NAME).get(key) as T;
 }
 
 
