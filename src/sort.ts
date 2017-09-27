@@ -8,7 +8,7 @@ import onSave from "./on-save";
 import { getConfiguration, getMaxRange } from "./utils";
 
 
-const findImports = /^import [^\n]+\n\n?/gm;
+const findImports = /^import [^\n]+\n+/gm;
 const defaultLanguages = [
     'javascript',
     'typescript',
@@ -73,11 +73,9 @@ function injectBlankLines(code: string) {
     }
 
     const imports = code.match(findImports);
-    const last = imports[imports.length - 1].trim();
-    const inject = '\n'.repeat(blankLines - 1);
+    const last = imports[imports.length - 1];
+    const line = last.trim();
+    const inject = '\n'.repeat(blankLines + 1);
 
-    return code
-        .split('\n')
-        .map(line => line === last ? `${line}${inject}` : line)
-        .join('\n');
+    return code.replace(last, `${line}${inject}`);
 }
