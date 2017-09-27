@@ -33,7 +33,7 @@ export function sort(document: TextDocument): string {
 
     try {
         const config = getConfig(extension, directory);
-        result = importSort(currentText, config.parser, styles[styleId]);
+        result = importSort(currentText, config.parser, styles[styleId], fileName);
     } catch (exception) {
         if (!getConfiguration<boolean>('suppress-warnings')) {
             window.showWarningMessage(`Error sorting imports: ${exception}`);

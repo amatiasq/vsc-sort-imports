@@ -89,18 +89,19 @@
   },
   "devDependencies": {
     "@types/node": "^6.0.46",
-    "import-sort-parser": "^2.0.14",
-    "import-sort-style": "^2.3.0",
+    "import-sort-parser": "^3.0.0",
+    "import-sort-style": "^3.0.0",
     "typescript": "^2.0.6",
     "vscode": "^1.0.3"
   },
   "dependencies": {
     "@types/core-js": "^0.9.41",
-    "import-sort": "2.4.0",
-    "import-sort-config": "2.4.0",
-    "import-sort-parser-babylon": "2.3.0",
-    "import-sort-parser-typescript": "2.2.1",
-    "import-sort-style-eslint": "2.4.0",
-    "import-sort-style-module": "2.4.0"
+    "import-sort": "3.2.0",
+    "import-sort-config": "3.2.0",
+    "import-sort-parser-babylon": "3.2.0",
+    "import-sort-parser-typescript": "3.2.0",
+    "import-sort-style-eslint": "3.0.0",
+    "import-sort-style-module": "3.0.0",
   }
 }
+
