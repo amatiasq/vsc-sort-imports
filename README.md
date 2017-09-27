@@ -1,10 +1,9 @@
-# amq-sort-imports
-
-A fork from [`sort-imports`](https://github.com/peterjuras/vsc-sort-imports.git) to add features.
-
 # sort-imports
 
-Sort ES6 imports for JavaScript and TypeScript automatically. Ported from the [atom-import-sort](https://atom.io/packages/atom-import-sort) package by [Renke Grunwald](https://github.com/renke).
+Sort ES6 imports for JavaScript and TypeScript automatically.
+Developed by [Peter Juras](https://github.com/peterjuras),
+Maintained by [A. Matías Quezada](https://github.com/amatiasq)
+Ported from the [atom-import-sort](https://atom.io/packages/atom-import-sort) package by [Renke Grunwald](https://github.com/renke).
 
 ![Sort Example](http://i.imgur.com/XEzc7EU.gif)
 
@@ -13,22 +12,26 @@ Sort ES6 imports for JavaScript and TypeScript automatically. Ported from the [a
 Automatically sorts imports on save. You can disable this behavior in the settings and sort imports manually:
 
 1. Launch the Command Palette (`Ctrl/Cmd + Shift + P`);
-2. Enter **Sort imports**
+1. Enter **Sort imports**
 
 You can also save the document without saving imports. This could become handy when you have auto saving enabled, but don't want to sort the imports in a particular file:
 
 1. Launch the Command Palette (`Ctrl/Cmd + Shift + P`);
-2. Enter **Save file without sorting imports**
+1. Enter **Save file without sorting imports**
 
 ## Extension Settings
 
 This extension has the following settings:
 
-* `sortImports.onSave`: enable/disable auto sorting on save (default: true)
-* `sortImports.suppressWarnings`: suppress warnings if sorting imports fails (default: false)
-* `sortImports.languages`: selectively choose the languages which should be sported (default: ['javascript', 'typescript'])
+* `sort-imports.on-save`: enable/disable auto sorting on save (default: true)
+* `sort-imports.languages`: selectively choose the languages which should be sported (default: ['javascript', 'typescript'])
 
 ## Release Notes
+
+#### 3.0.0
+
+- Renamed to sort-imports. Renamed config settings to slug-case.
+- Fixed blank linkes after imports feature.
 
 #### 2.4.0
 

@@ -1,8 +1,8 @@
 {
-  "name": "amq-sort-imports",
-  "displayName": "amq-sort-imports",
+  "name": "sort-imports",
+  "displayName": "sort-imports",
   "description": "Sort ES6 imports automatically.",
-  "version": "2.4.6",
+  "version": "3.0.0",
   "galleryBanner": {
     "color": "#2980b9",
     "theme": "dark"
@@ -33,7 +33,7 @@
     "Import"
   ],
   "activationEvents": [
-    "onCommand:extension.amq-sort-imports",
+    "onCommand:extension.sort-imports",
     "onLanguage:javascript",
     "onLanguage:javascriptreact",
     "onLanguage:typescript",
@@ -43,38 +43,38 @@
   "contributes": {
     "commands": [
       {
-        "command": "amq-sort-imports.sort",
+        "command": "sort-imports.sort",
         "title": "Sort imports"
       },
       {
-        "command": "amq-sort-imports.save-without-sorting",
+        "command": "sort-imports.save-without-sorting",
         "title": "Save file without sorting imports"
       }
     ],
     "configuration": {
       "title": "Sort Imports configuration",
       "properties": {
-        "amq-sort-imports.blank-lines-after": {
+        "sort-imports.blank-lines-after": {
           "type": "number",
           "default": 2,
           "description": "Blank lines after import declarations."
         },
-        "amq-sort-imports.sort-type": {
+        "sort-imports.sort-type": {
           "type": "string",
           "default": "by-module-name",
           "description": "Sorting algorithm. Valid values: 'by-module-name', 'by-imported-name'."
         },
-        "amq-sort-imports.on-save": {
+        "sort-imports.on-save": {
           "type": "boolean",
           "default": true,
           "description": "Automatically sort imports on save."
         },
-        "amq-sort-imports.suppress-warnings": {
+        "sort-imports.suppress-warnings": {
           "type": "boolean",
           "default": false,
           "description": "Suppress warnings when sorting fails."
         },
-        "amq-sort-imports.languages": {
+        "sort-imports.languages": {
           "type": "array",
           "default": ["javascript", "typescript"],
           "description": "Languages to sort on save."
@@ -101,7 +101,7 @@
     "import-sort-parser-babylon": "3.2.0",
     "import-sort-parser-typescript": "3.2.0",
     "import-sort-style-eslint": "3.0.0",
-    "import-sort-style-module": "3.0.0",
+    "import-sort-style-module": "3.0.0"
   }
 }
 
