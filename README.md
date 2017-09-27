@@ -1,6 +1,6 @@
 # amq-sort-imports
 
-A for from [`sort-imports`](https://github.com/peterjuras/vsc-sort-imports.git) to add features.
+A fork from [`sort-imports`](https://github.com/peterjuras/vsc-sort-imports.git) to add features.
 
 # sort-imports
 
@@ -26,10 +26,16 @@ This extension has the following settings:
 
 * `sortImports.onSave`: enable/disable auto sorting on save (default: true)
 * `sortImports.suppressWarnings`: suppress warnings if sorting imports fails (default: false)
+* `sortImports.languages`: selectively choose the languages which should be sported (default: ['javascript', 'typescript'])
 
 ## Release Notes
 
 #### 2.4.0
+
+- Implemented by [@danieloprado](https://github.com/danieloprado): Added setting to selectively choose the languages. Set `sortImports.languages` to an array of the languages that you want to be sorted, e.g. `['javascript']`.
+- Bugfixes
+
+#### 2.4.0 (amq-sort-imports fork)
 
 - Import style `by-module-name` added.
 - Added support for blank lines after imports.
