@@ -1,8 +1,6 @@
 # sort-imports
 
 Sort ES6 imports for JavaScript and TypeScript automatically.
-Developed by [Peter Juras](https://github.com/peterjuras),
-Maintained by [A. Matías Quezada](https://github.com/amatiasq)
 Ported from the [atom-import-sort](https://atom.io/packages/atom-import-sort) package by [Renke Grunwald](https://github.com/renke).
 
 ![Sort Example](http://i.imgur.com/XEzc7EU.gif)
@@ -23,8 +21,14 @@ You can also save the document without saving imports. This could become handy w
 
 This extension has the following settings:
 
-* `sort-imports.on-save`: enable/disable auto sorting on save (default: true)
-* `sort-imports.languages`: selectively choose the languages which should be sported (default: ['javascript', 'typescript'])
+* `sort-imports.on-save`: enable/disable auto sorting on save (default: true).
+* `sort-imports.suppress-warnings`: suppress warnings if sorting imports fails (default: false).
+* `sort-imports.languages`: selectively choose the languages which should be sported (default: ['javascript', 'typescript']).
+* `sort-imports.blank-lines-after`: number of blank linkes after the imports (default: 2). Set to 0 to disable the feature.
+* `sort-imports.sort-type`: two sorting modes are provided: `by-module-name` (default) and `by-imported-name`.
+  * `by-module-name` will sort imports by the imported path. This is the default setting.
+  * `by-imported-name` will sort the imports by the first imported identifier.
+
 
 ## Release Notes
 
@@ -68,6 +72,12 @@ This extension has the following settings:
 ### 1.0.0
 
 Initial release
+
+
+# Credits
+
+Developed by [Peter Juras](https://github.com/peterjuras),
+maintained by [A. Matías Quezada](https://github.com/amatiasq)
 
 ## Thanks
 
