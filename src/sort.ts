@@ -8,11 +8,10 @@ import onSave from "./on-save";
 import { getConfiguration, getMaxRange } from "./utils";
 
 
+const findImports = /^import [^\n]+\n\n?/gm;
 const defaultLanguages = [
     'javascript',
     'typescript',
-    'javascriptreact',
-    'typescriptreact',
 ];
 
 
@@ -33,7 +32,7 @@ export function sort(document: TextDocument): string {
 
     try {
         const config = getConfig(extension, directory);
-        result = importSort(currentText, config.parser, styles[styleId], fileName);
+        result = importSort(currentText, config.parser, styles[styleId]);
     } catch (exception) {
         if (!getConfiguration<boolean>('suppress-warnings')) {
             window.showWarningMessage(`Error sorting imports: ${exception}`);
@@ -41,23 +40,7 @@ export function sort(document: TextDocument): string {
         return null;
     }
 
-    // Last change contains the new import section
-    // const change = result.changes.pop()
-    // const blankLines = getConfiguration<number>('blank-lines-after');
-
-    // if (blankLines) {
-    //     if (change) {
-    //         const length = change.code.length;
-    //         const before = result.code.substr(0, length);
-    //         const after = result.code.substr(length);
-    //         result.code = before + '\n'.repeat(blankLines - 1) + after;
-    //     } else {
-    //         // TODO: When imports are not modified we should check the
-    //         //   blank lines after the imports section.
-    //     }
-    // }
-
-    return result.code;
+    return injectBlankLines(result.code);
 }
 
 
@@ -79,4 +62,22 @@ export function sortCurrentDocument() {
 export async function saveWithoutSorting() {
     const { document } = window.activeTextEditor;
     onSave.bypass(async () => await document.save());
+}
+
+
+function injectBlankLines(code: string) {
+    const blankLines = getConfiguration<number>('blank-lines-after');
+
+    if (!blankLines || !code) {
+        return code;
+    }
+
+    const imports = code.match(findImports);
+    const last = imports[imports.length - 1].trim();
+    const inject = '\n'.repeat(blankLines - 1);
+
+    return code
+        .split('\n')
+        .map(line => line === last ? `${line}${inject}` : line)
+        .join('\n');
 }
