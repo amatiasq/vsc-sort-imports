@@ -5,7 +5,7 @@ export const EXTENSION_NAME = 'amq-sort-imports';
 
 
 export function getConfiguration<T>(key: string): T {
-    return workspace.getConfiguration(EXTENSION_NAME).get(key) as T;
+    return workspace.getConfiguration(EXTENSION_NAME).get<T>(key);
 }
 
 

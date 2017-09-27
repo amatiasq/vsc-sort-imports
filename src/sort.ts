@@ -3,16 +3,24 @@ import { getConfig } from "import-sort-config";
 import { dirname, extname } from "path";
 import { TextDocument, window } from "vscode";
 
-import onSave from "./on-save";
 import styles from "./styles";
+import onSave from "./on-save";
 import { getConfiguration, getMaxRange } from "./utils";
 
 
-const validLanguages = /^(java|type)script(react)*$/;
+const defaultLanguages = [
+    'javascript',
+    'typescript',
+    'javascriptreact',
+    'typescriptreact',
+];
 
 
 export function sort(document: TextDocument): string {
-    if (!document.languageId.match(validLanguages)) {
+    const languages = getConfiguration<string[]>('languages') || defaultLanguages;
+    const isValidLanguage = languages.some(language => document.languageId.includes(language));
+
+    if (!isValidLanguage) {
         return;
     }
 
@@ -34,20 +42,20 @@ export function sort(document: TextDocument): string {
     }
 
     // Last change contains the new import section
-    const change = result.changes.pop()
-    const blankLines = getConfiguration<number>('blank-lines-after');
+    // const change = result.changes.pop()
+    // const blankLines = getConfiguration<number>('blank-lines-after');
 
-    if (blankLines) {
-        if (change) {
-            const length = change.code.length;
-            const before = result.code.substr(0, length);
-            const after = result.code.substr(length);
-            result.code = before + '\n'.repeat(blankLines - 1) + after;
-        } else {
-            // TODO: When imports are not modified we should check the
-            //   blank lines after the imports section.
-        }
-    }
+    // if (blankLines) {
+    //     if (change) {
+    //         const length = change.code.length;
+    //         const before = result.code.substr(0, length);
+    //         const after = result.code.substr(length);
+    //         result.code = before + '\n'.repeat(blankLines - 1) + after;
+    //     } else {
+    //         // TODO: When imports are not modified we should check the
+    //         //   blank lines after the imports section.
+    //     }
+    // }
 
     return result.code;
 }
@@ -68,10 +76,7 @@ export function sortCurrentDocument() {
 }
 
 
-
 export async function saveWithoutSorting() {
     const { document } = window.activeTextEditor;
     onSave.bypass(async () => await document.save());
 }
-
-

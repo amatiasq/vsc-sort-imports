@@ -73,6 +73,11 @@
           "type": "boolean",
           "default": false,
           "description": "Suppress warnings when sorting fails."
+        },
+        "amq-sort-imports.languages": {
+          "type": "array",
+          "default": ["javascript", "typescript"],
+          "description": "Languages to sort on save."
         }
       }
     }
