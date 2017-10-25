@@ -24,7 +24,7 @@ This extension has the following settings:
 * `sort-imports.on-save`: enable/disable auto sorting on save (default: true).
 * `sort-imports.suppress-warnings`: suppress warnings if sorting imports fails (default: false).
 * `sort-imports.languages`: selectively choose the languages which should be sported (default: ['javascript', 'typescript']).
-* `sort-imports.blank-lines-after`: number of blank linkes after the imports (default: 2). Set to 0 to disable the feature.
+* `sort-imports.blank-lines-after`: number of blank linkes after the imports (default: 0). Set to 0 to disable the feature.
 * `sort-imports.sort-type`: two sorting modes are provided: `by-module-name` (default) and `by-imported-name`.
   * `by-module-name` will sort imports by the imported path. This is the default setting.
   * `by-imported-name` will sort the imports by the first imported identifier.

@@ -2,7 +2,7 @@
   "name": "sort-imports",
   "displayName": "sort-imports",
   "description": "Sort ES6 imports automatically.",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "galleryBanner": {
     "color": "#2980b9",
     "theme": "dark"
@@ -56,7 +56,7 @@
       "properties": {
         "sort-imports.blank-lines-after": {
           "type": "number",
-          "default": 2,
+          "default": 0,
           "description": "Blank lines after import declarations."
         },
         "sort-imports.sort-type": {
