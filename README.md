@@ -24,13 +24,21 @@ This extension has the following settings:
 * `sort-imports.on-save`: enable/disable auto sorting on save (default: true).
 * `sort-imports.suppress-warnings`: suppress warnings if sorting imports fails (default: false).
 * `sort-imports.languages`: selectively choose the languages which should be sported (default: ['javascript', 'typescript']).
-* `sort-imports.blank-lines-after`: number of blank linkes after the imports (default: 0). Set to 0 to disable the feature.
-* `sort-imports.sort-type`: two sorting modes are provided: `by-module-name` (default) and `by-imported-name`.
-  * `by-module-name` will sort imports by the imported path. This is the default setting.
-  * `by-imported-name` will sort the imports by the first imported identifier.
 
+### Obsolete settings
+
+See [release notes for version 4](https://github.com/amatiasq/vsc-sort-imports#400)
 
 ## Release Notes
+
+#### 4.0.0
+
+Update to ease transition from [@peterjuras' extension](https://github.com/peterjuras/vsc-sort-imports).
+
+* `sort-imports.blank-lines-after`: removed until a valid implementation is provided
+* `sort-imports.sort-type`: you can now configure your sorting type folowing with a key in your `package.json`. [Documentation](https://github.com/renke/import-sort#using-a-different-style-or-parser)
+  * `by-module-name`: is now `"style": "module-compact"`
+  * `by-imported-name`: is removed
 
 #### 3.0.0
 

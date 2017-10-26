@@ -1,5 +1,4 @@
-import { Range, workspace } from "vscode";
-
+import { Range, workspace } from 'vscode';
 
 export const EXTENSION_NAME = 'sort-imports';
 

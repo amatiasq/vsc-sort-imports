@@ -3,11 +3,9 @@ import {
     TextDocumentWillSaveEvent,
     TextEdit,
     workspace,
-} from "vscode";
-
-import { sort } from "./sort";
-import { getConfiguration, getMaxRange }  from "./utils";
-
+} from 'vscode';
+import { sort } from './sort';
+import { getConfiguration, getMaxRange }  from './utils';
 
 let subscription: Disposable;
 
