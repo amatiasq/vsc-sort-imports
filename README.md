@@ -29,6 +29,37 @@ This extension has the following settings:
 
 See [release notes for version 4](https://github.com/amatiasq/vsc-sort-imports#400)
 
+## Use a different style or parser
+
+Styles (and parsers) can be configured on a per-project basis including support for different types of files (currently JavaScript and TypeScript).
+
+Just add the following to your `package.json` and adapt it to your liking:
+
+```json
+"importSort": {
+  ".js, .jsx, .es6, .es": {
+    "parser": "babylon",
+    "style": "eslint"
+  },
+  ".ts, .tsx": {
+    "parser": "typescript",
+    "style": "eslint"
+  }
+}
+```
+
+The keys are a list of file extensions that map to the parser and style that should be used for files that have any of the listed file extensions.
+
+By default, `sort-import` comes with these styles:
+
+* [`import-sort-style-eslint` (default)](https://github.com/renke/import-sort/tree/master/packages/import-sort-style-eslint): A style that that is compatible with [ESLint's](http://eslint.org/) [sort-imports](http://eslint.org/docs/rules/sort-imports) rule.
+
+* [`import-sort-style-module`](https://github.com/renke/import-sort/tree/master/packages/import-sort-style-module): A style that groups and sorts by module.
+
+* [`import-sort-style-module-compact`](https://github.com/amatiasq/import-sort-style-module-compact): Similar to modules but with fewer groups.
+
+PRs with more styles are welcome.
+
 ## Release Notes
 
 #### 4.0.0
