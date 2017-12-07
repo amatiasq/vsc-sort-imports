@@ -64,11 +64,6 @@
           "default": false,
           "description": "Suppress warnings when sorting fails."
         },
-        "sort-imports.disable-package-json-config-checks": {
-          "type": "boolean",
-          "default": false,
-          "description": "If true, will avoid using `import-sort-config` to search for custom configuration."
-        },
         "sort-imports.default-sort-style": {
           "type": "string",
           "default": "module-compact",
