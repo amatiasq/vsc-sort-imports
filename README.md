@@ -62,6 +62,9 @@ PRs with more styles are welcome.
 
 ## Release Notes
 
+### 4.1.0
+* Implemented by [@cliffkoh](https://github.com/cliffkoh): Introduced `sort-imports.default-sort-style`, which defaults to `module-compact`. Other possible values are `module` and `eslint`.
+
 #### 4.0.0
 
 Update to ease transition from [@peterjuras' extension](https://github.com/peterjuras/vsc-sort-imports).

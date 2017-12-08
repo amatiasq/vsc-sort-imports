@@ -64,6 +64,11 @@
           "default": false,
           "description": "Suppress warnings when sorting fails."
         },
+        "sort-imports.default-sort-style": {
+          "type": "string",
+          "default": "module-compact",
+          "description": "Default sorting style."
+        },
         "sort-imports.languages": {
           "type": "array",
           "default": [
@@ -86,12 +91,12 @@
     "vscode": "^1.0.3"
   },
   "dependencies": {
-    "import-sort": "3.2.0",
-    "import-sort-config": "^3.2.0",
-    "import-sort-parser-babylon": "^3.2.0",
-    "import-sort-parser-typescript": "^3.2.0",
-    "import-sort-style-eslint": "^3.0.0",
-    "import-sort-style-module": "^3.0.0",
+    "import-sort": "4.2.0",
+    "import-sort-config": "^4.2.0",
+    "import-sort-parser-babylon": "^4.2.0",
+    "import-sort-parser-typescript": "^4.2.0",
+    "import-sort-style-eslint": "^4.0.0",
+    "import-sort-style-module": "^4.0.0",
     "import-sort-style-module-compact": "^1.0.0"
   }
 }

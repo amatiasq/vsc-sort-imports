@@ -1,16 +1,16 @@
-import importSort from 'import-sort';
-import { getConfig } from 'import-sort-config';
-import { dirname, extname } from 'path';
+import { DEFAULT_CONFIGS, getConfig } from 'import-sort-config';
 import { TextDocument, window } from 'vscode';
-import onSave from './on-save';
+import { dirname, extname } from 'path';
 import { getConfiguration, getMaxRange } from './utils';
+
+import importSort from 'import-sort';
+import onSave from './on-save';
 
 // const findImports = /^import [^\n]+\n+/gm;
 const defaultLanguages = [
     'javascript',
     'typescript',
 ];
-
 
 export function sort(document: TextDocument): string {
     const languages = getConfiguration<string[]>('languages') || defaultLanguages;
@@ -26,10 +26,18 @@ export function sort(document: TextDocument): string {
     const directory = dirname(fileName);
 
     let result;
+    const config = { ...DEFAULT_CONFIGS };
+    const defaultSortStyle = getConfiguration<string>('default-sort-style');
+    for (const languages in config) {
+        if (config.hasOwnProperty(languages)) {
+            config[languages].style = defaultSortStyle;
+        }
+    }
+
 
     try {
-        const config = getConfig(extension, directory);
-        result = importSort(currentText, config.parser, config.style, fileName);
+        const { parser, style } = getConfig(extension, directory, config);
+        const result = importSort(currentText, parser, style, fileName);
         return result.code;
     } catch (exception) {
         if (!getConfiguration<boolean>('suppress-warnings')) {
