@@ -63,7 +63,10 @@ PRs with more styles are welcome.
 ## Release Notes
 
 ### 4.1.0
-* Implemented by [@cliffkoh](https://github.com/cliffkoh): Introduced `sort-imports.default-sort-style`, which defaults to `module-compact`. Other possible values are `module` and `eslint`.
+* Implemented by [@cliffkoh](https://github.com/cliffkoh)
+  * Introduced `sort-imports.default-sort-style`, which defaults to `module-compact`. Other possible values are `module` and `eslint`.
+  * Introduced `sort-imports.cache-package-json-config-checks` which defaults to `true`. When true, will cache calls to `import-sort-config` thereby improving performance 
+  (avoids repeated non-trival disk lookups and parsing).
 
 #### 4.0.0
 

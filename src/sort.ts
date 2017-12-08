@@ -12,6 +12,10 @@ const defaultLanguages = [
     'typescript',
 ];
 
+let cachedParser: string;
+let cachedStyle: string;
+
+
 export function sort(document: TextDocument): string {
     const languages = getConfiguration<string[]>('languages') || defaultLanguages;
     const isValidLanguage = languages.some(language => document.languageId.includes(language));
@@ -34,11 +38,19 @@ export function sort(document: TextDocument): string {
         }
     }
 
+    const useCache = getConfiguration<boolean>('cache-package-json-config-checks');
 
     try {
-        const { parser, style } = getConfig(extension, directory, config);
-        const result = importSort(currentText, parser, style, fileName);
-        return result.code;
+        if (useCache && cachedParser === undefined) {
+            const { parser, style } = getConfig(extension, directory, config);
+            cachedParser = parser;
+            cachedStyle = style;
+            const result = importSort(currentText, parser, style, fileName);
+            return result.code;
+        } else {
+            const result = importSort(currentText, cachedParser, cachedStyle, fileName);
+            return result.code;
+        }
     } catch (exception) {
         if (!getConfiguration<boolean>('suppress-warnings')) {
             window.showWarningMessage(`Error sorting imports: ${exception}`);

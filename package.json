@@ -64,14 +64,14 @@
           "default": false,
           "description": "Suppress warnings when sorting fails."
         },
-        "sort-imports.disable-package-json-config-checks": {
+        "sort-imports.cache-package-json-config-checks": {
           "type": "boolean",
-          "default": false,
-          "description": "If true, will avoid using `import-sort-config` to search for custom configuration."
+          "default": true,
+          "description": "If true, will cache calls to `import-sort-config`, thereby improving performance."
         },
         "sort-imports.default-sort-style": {
           "type": "string",
-          "default": "module-compact",
+          "default": "module-scoped",
           "description": "Default sorting style."
         },
         "sort-imports.languages": {
@@ -102,6 +102,7 @@
     "import-sort-parser-typescript": "^4.2.0",
     "import-sort-style-eslint": "^4.0.0",
     "import-sort-style-module": "^4.0.0",
-    "import-sort-style-module-compact": "^1.0.0"
+    "import-sort-style-module-compact": "^1.0.0",
+    "import-sort-style-module-scoped": "^1.0.1"
   }
 }
