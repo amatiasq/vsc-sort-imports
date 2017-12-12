@@ -31,6 +31,7 @@ export function sort(document: TextDocument): string {
     let result;
     const config = { ...DEFAULT_CONFIGS };
     const defaultSortStyle = getConfiguration<string>('default-sort-style');
+
     for (const languages in config) {
         if (config.hasOwnProperty(languages)) {
             config[languages].style = defaultSortStyle;
@@ -40,20 +41,20 @@ export function sort(document: TextDocument): string {
     const useCache = getConfiguration<boolean>('cache-package-json-config-checks');
 
     try {
-        if (useCache && cachedParser === undefined) {
+        if (useCache && !cachedParser) {
             const { parser, style } = getConfig(extension, directory, config);
             cachedParser = parser;
             cachedStyle = style;
-            const result = importSort(currentText, parser, style, fileName);
-            return result.code;
-        } else {
-            const result = importSort(currentText, cachedParser, cachedStyle, fileName);
-            return result.code;
         }
+
+        const result = importSort(currentText, cachedParser, cachedStyle, fileName);
+        return result.code;
+
     } catch (exception) {
         if (!getConfiguration<boolean>('suppress-warnings')) {
             window.showWarningMessage(`Error sorting imports: ${exception}`);
         }
+
         return null;
     }
 }

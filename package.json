@@ -71,8 +71,8 @@
         },
         "sort-imports.default-sort-style": {
           "type": "string",
-          "default": "module-scoped",
-          "description": "Default sorting style."
+          "default": "eslint",
+          "description": "Default sorting style. Options are eslint, module, module-scoped, module-compact."
         },
         "sort-imports.languages": {
           "type": "array",
