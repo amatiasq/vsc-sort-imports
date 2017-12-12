@@ -5,7 +5,7 @@ import {
     workspace,
 } from 'vscode';
 import { sort } from './sort';
-import { getConfiguration, getMaxRange }  from './utils';
+import { getConfiguration, getMaxRange } from './utils';
 
 let subscription: Disposable;
 
@@ -36,7 +36,7 @@ export default {
     update() {
         if (this.isEnabled) {
             this.register();
-        } else {
+        } else {
             this.unregister();
         }
     },
@@ -44,8 +44,10 @@ export default {
     bypass(action) {
         this.unregister();
         const result = action();
-        this.update();
-        return result;
+        return result.then((res) => {
+            this.update();
+            return res;
+        });
     }
 };
 
@@ -56,6 +58,6 @@ function listener({ document, waitUntil }: TextDocumentWillSaveEvent) {
         return;
     }
 
-    const edits = Promise.resolve([ new TextEdit(getMaxRange(), sortedText) ]);
+    const edits = Promise.resolve([new TextEdit(getMaxRange(), sortedText)]);
     waitUntil(edits);
 }
