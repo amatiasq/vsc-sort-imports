@@ -1,10 +1,9 @@
+import importSort from 'import-sort';
 import { DEFAULT_CONFIGS, getConfig } from 'import-sort-config';
 import { TextDocument, window } from 'vscode';
 import { dirname, extname } from 'path';
-import { getConfiguration, getMaxRange } from './utils';
-
-import importSort from 'import-sort';
 import onSave from './on-save';
+import { getConfiguration, getMaxRange } from './utils';
 
 // const findImports = /^import [^\n]+\n+/gm;
 const defaultLanguages = [
