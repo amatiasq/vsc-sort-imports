@@ -67,6 +67,7 @@ PRs with more styles are welcome.
   * Introduced `sort-imports.default-sort-style`, which defaults to `module-compact`. Other possible values are `module` and `eslint`.
   * Introduced `sort-imports.cache-package-json-config-checks` which defaults to `true`. When true, will cache calls to `import-sort-config` thereby improving performance 
   (avoids repeated non-trival disk lookups and parsing).
+  * Fixed bug in `Save file without sorting import` which caused it to not work.
 
 #### 4.0.0
 
