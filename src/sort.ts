@@ -1,5 +1,5 @@
 import importSort from 'import-sort';
-import { getConfig } from 'import-sort-config';
+import { DEFAULT_CONFIGS, getConfig } from 'import-sort-config';
 import { dirname, extname } from 'path';
 import { TextDocument, window } from 'vscode';
 import onSave from './on-save';
@@ -10,6 +10,9 @@ const defaultLanguages = [
     'javascript',
     'typescript',
 ];
+
+let cachedParser: string;
+let cachedStyle: string;
 
 
 export function sort(document: TextDocument): string {
@@ -26,15 +29,32 @@ export function sort(document: TextDocument): string {
     const directory = dirname(fileName);
 
     let result;
+    const config = { ...DEFAULT_CONFIGS };
+    const defaultSortStyle = getConfiguration<string>('default-sort-style');
+
+    for (const languages in config) {
+        if (config.hasOwnProperty(languages)) {
+            config[languages].style = defaultSortStyle;
+        }
+    }
+
+    const useCache = getConfiguration<boolean>('cache-package-json-config-checks');
 
     try {
-        const config = getConfig(extension, directory);
-        result = importSort(currentText, config.parser, config.style, fileName);
+        if (!useCache || !cachedParser) {
+            const { parser, style } = getConfig(extension, directory, config);
+            cachedParser = parser;
+            cachedStyle = style;
+        }
+
+        const result = importSort(currentText, cachedParser, cachedStyle, fileName);
         return result.code;
+
     } catch (exception) {
         if (!getConfiguration<boolean>('suppress-warnings')) {
             window.showWarningMessage(`Error sorting imports: ${exception}`);
         }
+
         return null;
     }
 }
