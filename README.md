@@ -3,7 +3,7 @@
 Sort ES6 imports for JavaScript and TypeScript automatically.
 Ported from the [atom-import-sort](https://atom.io/packages/atom-import-sort) package by [Renke Grunwald](https://github.com/renke).
 
-![Sort Example](http://i.imgur.com/XEzc7EU.gif)
+![Sort Example](https://i.imgur.com/XEzc7EU.gif)
 
 ## Features
 
@@ -21,9 +21,11 @@ You can also save the document without saving imports. This could become handy w
 
 This extension has the following settings:
 
-* `sort-imports.on-save`: enable/disable auto sorting on save (default: true).
-* `sort-imports.suppress-warnings`: suppress warnings if sorting imports fails (default: false).
-* `sort-imports.languages`: selectively choose the languages which should be sported (default: ['javascript', 'typescript']).
+* `sort-imports.default-sort-style`: sorting style if `package.json` doesn't have `import-sort` key (default: `eslint`).
+* `sort-imports.on-save`: enable/disable auto sorting on save (default: `true`).
+* `sort-imports.suppress-warnings`: suppress warnings if sorting imports fails (default: `false`).
+* `sort-imports.languages`: selectively choose the languages which should be sported (default: `['javascript', 'typescript']`).
+* `sort-imports.cache-package-json-config-checks`: performance optimization, disable if necessary (default: `true`).
 
 ### Obsolete settings
 
@@ -52,7 +54,7 @@ The keys are a list of file extensions that map to the parser and style that sho
 
 By default, `sort-import` comes with these styles:
 
-* [`import-sort-style-eslint` (default)](https://github.com/renke/import-sort/tree/master/packages/import-sort-style-eslint): A style that that is compatible with [ESLint's](http://eslint.org/) [sort-imports](http://eslint.org/docs/rules/sort-imports) rule.
+* [`import-sort-style-eslint` (default)](https://github.com/renke/import-sort/tree/master/packages/import-sort-style-eslint): A style that that is compatible with [ESLint's](http://eslint.org/) [sort-imports](https://eslint.org/docs/rules/sort-imports) rule.
 
 * [`import-sort-style-module`](https://github.com/renke/import-sort/tree/master/packages/import-sort-style-module): A style that groups and sorts by module.
 
@@ -64,8 +66,8 @@ PRs with more styles are welcome.
 
 ### 4.1.0
 * Implemented by [@cliffkoh](https://github.com/cliffkoh)
-  * Introduced `sort-imports.default-sort-style`, which defaults to `module-compact`. Other possible values are `module` and `eslint`.
-  * Introduced `sort-imports.cache-package-json-config-checks` which defaults to `true`. When true, will cache calls to `import-sort-config` thereby improving performance 
+  * Introduced `sort-imports.default-sort-style`, which defaults to `eslint`. Other possible values are `module`, `module-compact` and `module-scoped`.
+  * Introduced `sort-imports.cache-package-json-config-checks` which defaults to `true`. When true, will cache calls to `import-sort-config` thereby improving performance
   (avoids repeated non-trival disk lookups and parsing).
   * Fixed bug in `Save file without sorting import` which caused it to not work.
 
