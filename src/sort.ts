@@ -1,7 +1,7 @@
 import importSort from 'import-sort';
 import { DEFAULT_CONFIGS, getConfig } from 'import-sort-config';
-import { TextDocument, window } from 'vscode';
 import { dirname, extname } from 'path';
+import { TextDocument, window } from 'vscode';
 import onSave from './on-save';
 import { getConfiguration, getMaxRange } from './utils';
 
@@ -41,7 +41,7 @@ export function sort(document: TextDocument): string {
     const useCache = getConfiguration<boolean>('cache-package-json-config-checks');
 
     try {
-        if (useCache && !cachedParser) {
+        if (!useCache || !cachedParser) {
             const { parser, style } = getConfig(extension, directory, config);
             cachedParser = parser;
             cachedStyle = style;
