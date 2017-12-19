@@ -29,13 +29,11 @@ export function sort(document: TextDocument): string {
     const directory = dirname(fileName);
 
     let result;
-    const config = { ...DEFAULT_CONFIGS };
+    const config = clone(DEFAULT_CONFIGS);
     const defaultSortStyle = getConfiguration<string>('default-sort-style');
 
-    for (const languages in config) {
-        if (config.hasOwnProperty(languages)) {
-            config[languages].style = defaultSortStyle;
-        }
+    for (const languages of Object.keys(config)) {
+        config[languages].style = defaultSortStyle;
     }
 
     const useCache = getConfiguration<boolean>('cache-package-json-config-checks');
@@ -78,4 +76,9 @@ export function sortCurrentDocument() {
 export async function saveWithoutSorting() {
     const { document } = window.activeTextEditor;
     onSave.bypass(async () => await document.save());
+}
+
+
+function clone(object) {
+    return JSON.parse(JSON.stringify(object));
 }
