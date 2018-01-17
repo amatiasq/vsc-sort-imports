@@ -103,6 +103,7 @@
     "import-sort-style-eslint": "^4.0.0",
     "import-sort-style-module": "^4.0.0",
     "import-sort-style-module-compact": "^1.0.0",
-    "import-sort-style-module-scoped": "^1.0.3"
+    "import-sort-style-module-scoped": "^1.0.3",
+    "import-sort-style-module-scoped-ordered": "^1.0.3"
   }
 }
