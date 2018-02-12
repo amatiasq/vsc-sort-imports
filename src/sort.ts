@@ -1,9 +1,8 @@
-import importSort from 'import-sort';
 import { DEFAULT_CONFIGS, getConfig } from 'import-sort-config';
-import { dirname, extname } from 'path';
 import { TextDocument, window } from 'vscode';
-import onSave from './on-save';
+import { dirname, extname } from 'path';
 import { getConfiguration, getMaxRange } from './utils';
+import importSort, { ISortResult } from 'import-sort';
 
 // const findImports = /^import [^\n]+\n+/gm;
 const defaultLanguages = [
@@ -15,7 +14,7 @@ let cachedParser: string;
 let cachedStyle: string;
 
 
-export function sort(document: TextDocument): string {
+export function sort(document: TextDocument): ISortResult {
     const languages = getConfiguration<string[]>('languages') || defaultLanguages;
     const isValidLanguage = languages.some(language => document.languageId.includes(language));
 
@@ -45,9 +44,7 @@ export function sort(document: TextDocument): string {
             cachedStyle = style;
         }
 
-        const result = importSort(currentText, cachedParser, cachedStyle, fileName);
-        return result.code;
-
+        return importSort(currentText, cachedParser, cachedStyle, fileName);
     } catch (exception) {
         if (!getConfiguration<boolean>('suppress-warnings')) {
             window.showWarningMessage(`Error sorting imports: ${exception}`);
@@ -64,18 +61,13 @@ export function sortCurrentDocument() {
         activeTextEditor: { document }
     } = window;
 
-    const sortedText = sort(document);
-    if (!sortedText) {
+    const { code } = sort(document) || { code: '' };
+
+    if (!code) {
         return;
     }
 
-    return editor.edit(edit => edit.replace(getMaxRange(), sortedText));
-}
-
-
-export async function saveWithoutSorting() {
-    const { document } = window.activeTextEditor;
-    onSave.bypass(async () => await document.save());
+    return editor.edit(edit => edit.replace(getMaxRange(), code));
 }
 
 

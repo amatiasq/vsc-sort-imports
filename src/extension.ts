@@ -1,18 +1,29 @@
 import {
-    commands,
     ExtensionContext,
+    TextDocument,
+    TextEdit,
+    commands,
+    languages,
     workspace,
 } from 'vscode';
-import onSave from './on-save';
-import { saveWithoutSorting, sortCurrentDocument } from './sort';
+import { sort, sortCurrentDocument } from './sort';
+
 import { EXTENSION_NAME } from './utils';
+
+const formatter = {
+    provideDocumentFormattingEdits(document: TextDocument): TextEdit[] {
+        const result = sort(document);
+        const { changes } = result || { changes: [] };
+
+        console.log('FORMATTING', changes);
+        return changes; // as any[] as TextEdit[];
+    }
+};
 
 export function activate({ subscriptions }: ExtensionContext) {
     subscriptions.push(commands.registerCommand(EXTENSION_NAME + '.sort', sortCurrentDocument));
-    subscriptions.push(commands.registerCommand(EXTENSION_NAME + '.save-without-sorting', saveWithoutSorting));
-
-    onSave.update();
-    workspace.onDidChangeConfiguration(() => onSave.update());
+    languages.registerDocumentFormattingEditProvider('javascript', formatter);
+    languages.registerDocumentFormattingEditProvider('typescript', formatter);
 }
 
 export function deactivate() { }
