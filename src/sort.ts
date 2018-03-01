@@ -13,6 +13,7 @@ const defaultLanguages = [
 
 let cachedParser: string;
 let cachedStyle: string;
+let cachedOptions: object;
 
 
 export function sort(document: TextDocument): string {
@@ -40,12 +41,13 @@ export function sort(document: TextDocument): string {
 
     try {
         if (!useCache || !cachedParser) {
-            const { parser, style } = getConfig(extension, directory, config);
+            const { parser, style, config: { options } } = getConfig(extension, directory, config);
             cachedParser = parser;
             cachedStyle = style;
+            cachedOptions = options;
         }
 
-        const result = importSort(currentText, cachedParser, cachedStyle, fileName);
+        const result = importSort(currentText, cachedParser, cachedStyle, fileName, cachedOptions);
         return result.code;
 
     } catch (exception) {
