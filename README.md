@@ -41,11 +41,13 @@ Just add the following to your `package.json` and adapt it to your liking:
 "importSort": {
   ".js, .jsx, .es6, .es": {
     "parser": "babylon",
-    "style": "eslint"
+    "style": "eslint",
+    "options": {}
   },
   ".ts, .tsx": {
     "parser": "typescript",
-    "style": "eslint"
+    "style": "eslint",
+    "options": {}
   }
 }
 ```
