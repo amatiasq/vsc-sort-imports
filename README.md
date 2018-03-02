@@ -66,7 +66,16 @@ PRs with more styles are welcome.
 
 ## Release Notes
 
+### 5.1.0
+
+* Add support to importSort additional options [(thanks @fsmaia)](https://github.com/amatiasq/vsc-sort-imports/pull/19)
+
+### 5.0.0
+
+* Breaking change moving to [module-compact v2](https://github.com/amatiasq/import-sort-style-module-compact)
+
 ### 4.1.0
+
 * Implemented by [@cliffkoh](https://github.com/cliffkoh)
   * Introduced `sort-imports.default-sort-style`, which defaults to `eslint`. Other possible values are `module`, `module-compact` and `module-scoped`.
   * Introduced `sort-imports.cache-package-json-config-checks` which defaults to `true`. When true, will cache calls to `import-sort-config` thereby improving performance
