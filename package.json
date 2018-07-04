@@ -2,7 +2,7 @@
   "name": "sort-imports",
   "displayName": "sort-imports",
   "description": "Sort ES6 imports automatically.",
-  "version": "5.1.0",
+  "version": "6.0.0",
   "galleryBanner": {
     "color": "#2980b9",
     "theme": "dark"
@@ -91,17 +91,17 @@
     "postinstall": "node ./node_modules/vscode/bin/install"
   },
   "devDependencies": {
-    "@types/node": "^6.0.46",
-    "typescript": "^2.0.6",
-    "vscode": "^1.1.10"
+    "@types/node": "^10.5.1",
+    "typescript": "^2.9.2",
+    "vscode": "^1.1.18"
   },
   "dependencies": {
-    "import-sort": "4.2.0",
-    "import-sort-config": "^4.2.0",
-    "import-sort-parser-babylon": "^4.2.0",
-    "import-sort-parser-typescript": "^4.2.0",
-    "import-sort-style-eslint": "^4.0.0",
-    "import-sort-style-module": "^4.0.0",
+    "import-sort": "^5.0.0",
+    "import-sort-config": "^5.0.0",
+    "import-sort-parser-babylon": "^5.0.0",
+    "import-sort-parser-typescript": "^5.0.0",
+    "import-sort-style-eslint": "^5.0.0",
+    "import-sort-style-module": "^5.0.0",
     "import-sort-style-module-compact": "^2.0.0",
     "import-sort-style-module-scoped": "^1.0.3"
   }
