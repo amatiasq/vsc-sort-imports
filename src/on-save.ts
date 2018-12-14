@@ -4,6 +4,8 @@ import {
     workspace,
     window,
     TextEditorEdit,
+    TextDocument,
+    TextEdit,
 } from 'vscode';
 import { sort } from './sort';
 import { getConfiguration, getMaxRange } from './utils';
@@ -56,14 +58,24 @@ export default {
 function listener({ document, waitUntil }: TextDocumentWillSaveEvent) {
     const sortedText = sort(document);
     if (!sortedText) {
-        return;
+      return;
     }
 
-    const editor = window.activeTextEditor;
-
-    const editPromise = editor.edit((edit: TextEditorEdit) => {
-        edit.replace(getMaxRange(), sortedText);
-    });
-
-    waitUntil(editPromise);
+    waitUntil(changeContentOfDocument(document, sortedText));
 }
+
+function changeContentOfDocument(document: TextDocument, sortedText) {
+    const editor = window.activeTextEditor;
+    const savingActiveDocument = document === editor.document;
+
+    const maxRange = getMaxRange();
+
+    if (savingActiveDocument) {
+        return editor.edit((edit: TextEditorEdit) => {
+            edit.replace(maxRange, sortedText);
+        });
+    }
+
+    return Promise.resolve([new TextEdit(maxRange, sortedText)]);
+};
+
