@@ -1,8 +1,9 @@
 import {
     Disposable,
     TextDocumentWillSaveEvent,
-    TextEdit,
     workspace,
+    window,
+    TextEditorEdit,
 } from 'vscode';
 import { sort } from './sort';
 import { getConfiguration, getMaxRange } from './utils';
@@ -58,6 +59,11 @@ function listener({ document, waitUntil }: TextDocumentWillSaveEvent) {
         return;
     }
 
-    const edits = Promise.resolve([new TextEdit(getMaxRange(), sortedText)]);
-    waitUntil(edits);
+    const editor = window.activeTextEditor;
+
+    const editPromise = editor.edit((edit: TextEditorEdit) => {
+        edit.replace(getMaxRange(), sortedText);
+    });
+
+    waitUntil(editPromise);
 }
