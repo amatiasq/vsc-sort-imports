@@ -58,7 +58,7 @@ export default {
 function listener({ document, waitUntil }: TextDocumentWillSaveEvent) {
     const sortedText = sort(document);
     if (!sortedText) {
-      return;
+        return;
     }
 
     waitUntil(changeContentOfDocument(document, sortedText));
