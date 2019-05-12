@@ -64,10 +64,6 @@ By default, `sort-import` comes with these styles:
 
 PRs with more styles are welcome.
 
-## Known issues
-
-* [Cursor jumps at the end of the file on save](https://github.com/amatiasq/vsc-sort-imports/issues/7#issuecomment-432147034)
-
 ## Release Notes
 
 ### 5.1.0
