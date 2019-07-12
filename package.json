@@ -22,7 +22,7 @@
   "homepage": "https://github.com/amatiasq/vsc-sort-imports/blob/master/README.md",
   "license": "ISC",
   "categories": [
-    "Languages",
+    "Programming Languages",
     "Other"
   ],
   "keywords": [
@@ -93,15 +93,14 @@
   "devDependencies": {
     "@types/node": "^10.5.1",
     "typescript": "^2.9.2",
-    "vscode": "^1.1.18"
+    "vscode": "^1.1.35"
   },
   "dependencies": {
-    "import-sort": "^5.0.0",
-    "import-sort-config": "^5.0.0",
-    "import-sort-parser-babylon": "^5.0.0",
-    "import-sort-parser-typescript": "^5.0.0",
-    "import-sort-style-eslint": "^5.0.0",
-    "import-sort-style-module": "^5.0.0",
+    "import-sort": "^6.0.0",
+    "import-sort-config": "^6.0.0",
+    "import-sort-parser-babylon": "^6.0.0",
+    "import-sort-style-eslint": "^6.0.0",
+    "import-sort-style-module": "^6.0.0",
     "import-sort-style-module-compact": "^2.0.0",
     "import-sort-style-module-scoped": "^1.0.3"
   }
