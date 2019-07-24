@@ -64,6 +64,16 @@ By default, `sort-import` comes with these styles:
 
 PRs with more styles are welcome.
 
+## Troubleshooting
+
+### `parser.parseImports is not a function`
+
+This happens when using Typescript parser ([import-sort#72](https://github.com/renke/import-sort/issues/72)). The solution is to install it manually:
+
+```
+npm i -D import-sort-parser-typescript
+```
+
 ## Release Notes
 
 ### 5.1.0
