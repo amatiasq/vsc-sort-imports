@@ -1,13 +1,15 @@
 import { dirname, extname } from 'path';
 import importSort from 'import-sort';
 import { TextDocument, window } from 'vscode';
+import { codeFrameColumns } from '@babel/code-frame';
 import { getConfig } from './config-cache';
+import { safeExecution } from './errorHandler';
 import onSave from './on-save';
 import { getConfiguration, getMaxRange } from './utils';
 
 const defaultLanguages = ['javascript', 'typescript'];
 
-export function sort(document: TextDocument): string {
+export function sort(document: TextDocument): string | null {
   const languages = getConfiguration<string[]>('languages') || defaultLanguages;
   const skipTypeDefs = getConfiguration<boolean>('ignore-type-defs');
 
@@ -28,22 +30,35 @@ export function sort(document: TextDocument): string {
     return;
   }
 
-  try {
-    const {
-      parser,
-      style,
-      config: { options }
-    } = getConfig(extension, directory);
+  return safeExecution(
+    () => {
+      const {
+        parser,
+        style,
+        config: { options }
+      } = getConfig(extension, directory);
 
-    const result = importSort(currentText, parser, style, fileName, options);
-    return result.code;
-  } catch (exception) {
-    if (!getConfiguration<boolean>('suppress-warnings')) {
-      window.showWarningMessage(`Error sorting imports: ${exception}`);
-    }
+      try {
+        const result = importSort(
+          currentText,
+          parser,
+          style,
+          fileName,
+          options
+        );
+        return result.code;
+      } catch (err) {
+        err.message =
+          err.message +
+          '\n\n' +
+          codeFrameColumns(currentText, { start: err.loc });
 
-    return null;
-  }
+        throw err;
+      }
+    },
+    null,
+    fileName
+  );
 }
 
 export function sortCurrentDocument() {

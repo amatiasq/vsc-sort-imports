@@ -119,6 +119,7 @@
     "vscode": "^1.1.35"
   },
   "dependencies": {
+    "@babel/code-frame": "^7.5.5",
     "import-sort": "^6.0.0",
     "import-sort-config": "^6.0.0",
     "import-sort-parser-babylon": "^6.0.0",
