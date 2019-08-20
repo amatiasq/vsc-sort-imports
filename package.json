@@ -64,6 +64,11 @@
           "default": false,
           "description": "Suppress warnings when sorting fails."
         },
+        "sort-imports.ignore-type-defs": {
+          "type": "boolean",
+          "default": true,
+          "description": "Skip trying to sort .d.ts files."
+        },
         "sort-imports.cache-package-json-config-checks": {
           "type": "boolean",
           "default": true,

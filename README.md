@@ -21,11 +21,12 @@ You can also save the document without saving imports. This could become handy w
 
 This extension has the following settings:
 
-* `sort-imports.default-sort-style`: sorting style if `package.json` doesn't have `import-sort` key (default: `eslint`).
-* `sort-imports.on-save`: enable/disable auto sorting on save (default: `true`).
-* `sort-imports.suppress-warnings`: suppress warnings if sorting imports fails (default: `false`).
-* `sort-imports.languages`: selectively choose the languages which should be sported (default: `['javascript', 'typescript']`).
-* `sort-imports.cache-package-json-config-checks`: performance optimization, disable if necessary (default: `true`).
+- `sort-imports.default-sort-style`: sorting style if `package.json` doesn't have `import-sort` key (default: `eslint`).
+- `sort-imports.on-save`: enable/disable auto sorting on save (default: `true`).
+- `sort-imports.suppress-warnings`: suppress warnings if sorting imports fails (default: `false`).
+- `sort-imports.ignore-type-defs`: will not sort `.d.ts` files by default since import-sort doesn't handle them well (default: `true`).
+- `sort-imports.languages`: selectively choose the languages which should be sported (default: `['javascript', 'typescript']`).
+- `sort-imports.cache-package-json-config-checks`: performance optimization, disable if necessary (default: `true`).
 
 ### Obsolete settings
 
@@ -56,11 +57,11 @@ The keys are a list of file extensions that map to the parser and style that sho
 
 By default, `sort-import` comes with these styles:
 
-* [`import-sort-style-eslint` (default)](https://github.com/renke/import-sort/tree/master/packages/import-sort-style-eslint): A style that that is compatible with [ESLint's](http://eslint.org/) [sort-imports](https://eslint.org/docs/rules/sort-imports) rule.
+- [`import-sort-style-eslint` (default)](https://github.com/renke/import-sort/tree/master/packages/import-sort-style-eslint): A style that that is compatible with [ESLint's](http://eslint.org/) [sort-imports](https://eslint.org/docs/rules/sort-imports) rule.
 
-* [`import-sort-style-module`](https://github.com/renke/import-sort/tree/master/packages/import-sort-style-module): A style that groups and sorts by module.
+- [`import-sort-style-module`](https://github.com/renke/import-sort/tree/master/packages/import-sort-style-module): A style that groups and sorts by module.
 
-* [`import-sort-style-module-compact`](https://github.com/amatiasq/import-sort-style-module-compact): Similar to modules but with fewer groups.
+- [`import-sort-style-module-compact`](https://github.com/amatiasq/import-sort-style-module-compact): Similar to modules but with fewer groups.
 
 PRs with more styles are welcome.
 
@@ -78,28 +79,28 @@ npm i -D import-sort-parser-typescript
 
 ### 5.1.0
 
-* Add support to importSort additional options [(thanks @fsmaia)](https://github.com/amatiasq/vsc-sort-imports/pull/19)
+- Add support to importSort additional options [(thanks @fsmaia)](https://github.com/amatiasq/vsc-sort-imports/pull/19)
 
 ### 5.0.0
 
-* Breaking change moving to [module-compact v2](https://github.com/amatiasq/import-sort-style-module-compact)
+- Breaking change moving to [module-compact v2](https://github.com/amatiasq/import-sort-style-module-compact)
 
 ### 4.1.0
 
-* Implemented by [@cliffkoh](https://github.com/cliffkoh)
-  * Introduced `sort-imports.default-sort-style`, which defaults to `eslint`. Other possible values are `module`, `module-compact` and `module-scoped`.
-  * Introduced `sort-imports.cache-package-json-config-checks` which defaults to `true`. When true, will cache calls to `import-sort-config` thereby improving performance
-  (avoids repeated non-trival disk lookups and parsing).
-  * Fixed bug in `Save file without sorting import` which caused it to not work.
+- Implemented by [@cliffkoh](https://github.com/cliffkoh)
+  - Introduced `sort-imports.default-sort-style`, which defaults to `eslint`. Other possible values are `module`, `module-compact` and `module-scoped`.
+  - Introduced `sort-imports.cache-package-json-config-checks` which defaults to `true`. When true, will cache calls to `import-sort-config` thereby improving performance
+    (avoids repeated non-trival disk lookups and parsing).
+  - Fixed bug in `Save file without sorting import` which caused it to not work.
 
 #### 4.0.0
 
 Update to ease transition from [@peterjuras' extension](https://github.com/peterjuras/vsc-sort-imports).
 
-* `sort-imports.blank-lines-after`: removed until a valid implementation is provided
-* `sort-imports.sort-type`: you can now configure your sorting type folowing with a key in your `package.json`. [Documentation](https://github.com/renke/import-sort#using-a-different-style-or-parser)
-  * `by-module-name`: is now `"style": "module-compact"`
-  * `by-imported-name`: is removed
+- `sort-imports.blank-lines-after`: removed until a valid implementation is provided
+- `sort-imports.sort-type`: you can now configure your sorting type folowing with a key in your `package.json`. [Documentation](https://github.com/renke/import-sort#using-a-different-style-or-parser)
+  - `by-module-name`: is now `"style": "module-compact"`
+  - `by-imported-name`: is removed
 
 #### 3.0.0
 
@@ -141,7 +142,6 @@ Update to ease transition from [@peterjuras' extension](https://github.com/peter
 ### 1.0.0
 
 Initial release
-
 
 # Credits
 

@@ -1,6 +1,6 @@
+import { dirname, extname } from 'path';
 import importSort from 'import-sort';
 import { DEFAULT_CONFIGS, getConfig } from 'import-sort-config';
-import { dirname, extname } from 'path';
 import { TextDocument, window } from 'vscode';
 import onSave from './on-save';
 import { getConfiguration, getMaxRange } from './utils';
@@ -14,6 +14,8 @@ let cachedOptions: object;
 
 export function sort(document: TextDocument): string {
   const languages = getConfiguration<string[]>('languages') || defaultLanguages;
+  const skipTypeDefs = getConfiguration<boolean>('ignore-type-defs');
+
   const isValidLanguage = languages.some(language =>
     document.languageId.includes(language)
   );
@@ -26,6 +28,10 @@ export function sort(document: TextDocument): string {
   const fileName = document.fileName;
   const extension = extname(fileName);
   const directory = dirname(fileName);
+
+  if (skipTypeDefs && fileName.endsWith('.d.ts')) {
+    return;
+  }
 
   const config = clone(DEFAULT_CONFIGS);
   const defaultSortStyle = getConfiguration<string>('default-sort-style');
