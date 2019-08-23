@@ -59,11 +59,6 @@
           "default": true,
           "description": "Automatically sort imports on save."
         },
-        "sort-imports.suppress-warnings": {
-          "type": "boolean",
-          "default": false,
-          "description": "Suppress warnings when sorting fails."
-        },
         "sort-imports.ignore-type-defs": {
           "type": "boolean",
           "default": true,

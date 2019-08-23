@@ -5,12 +5,60 @@ import {
   StatusBarItem,
   TextEditor,
   commands,
-  languages,
   window
 } from 'vscode';
+import { skipFileSorting } from './sort';
 import { EXTENSION_NAME } from './utils';
 
+let statusBarItem: StatusBarItem;
 let outputChannel: OutputChannel;
+
+const supportedLanguages = [
+  'javascript',
+  'javascriptreact',
+  'typescript',
+  'typescriptreact'
+];
+
+export function toggleStatusBarItem(editor: TextEditor | undefined): void {
+  if (statusBarItem === undefined) {
+    return;
+  }
+
+  if (editor !== undefined) {
+    // The function will be triggered everytime the active "editor" instance changes
+    // It also triggers when we focus on the output panel or on the debug panel
+    // Both are seen as an "editor".
+    // The following check will ignore such panels
+    if (['debug', 'output'].some(part => editor.document.uri.scheme === part)) {
+      return;
+    }
+
+    const fileName = editor.document.isUntitled
+      ? undefined
+      : editor.document.fileName;
+
+    const skip = fileName && skipFileSorting(fileName);
+
+    if (!skip && supportedLanguages.includes(editor.document.languageId)) {
+      statusBarItem.show();
+    } else {
+      statusBarItem.hide();
+    }
+  } else {
+    statusBarItem.hide();
+  }
+}
+
+/**
+ * Update the statusBarItem message and show the statusBarItem
+ *
+ * @param message The message to put inside the statusBarItem
+ */
+function updateStatusBar(message: string): void {
+  statusBarItem.text = message;
+  statusBarItem.show();
+}
 
 /**
  * Adds the filepath to the error message
@@ -59,13 +107,16 @@ export function safeExecution(
   fileName: string
 ): string {
   try {
+    updateStatusBar('Sort Imports: $(check)');
     return cb();
   } catch (err) {
     addToOutput(addFilePath(err.message, fileName));
 
+    updateStatusBar('Sort Imports: $(x)');
     return defaultText;
   }
 }
+
 /**
  * Setup the output channel and the statusBarItem.
  * Create a command to show the output channel
@@ -73,6 +124,12 @@ export function safeExecution(
  * @returns {Disposable} The command to open the output channel
  */
 export function setupErrorHandler(): Disposable {
+  statusBarItem = window.createStatusBarItem(StatusBarAlignment.Right, -1);
+  statusBarItem.text = 'Sort Imports';
+  statusBarItem.command = `${EXTENSION_NAME}.open-output`;
+
+  toggleStatusBarItem(window.activeTextEditor);
+
   // Setup the outputChannel
   outputChannel = window.createOutputChannel('Sort Imports');
 

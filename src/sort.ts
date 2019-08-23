@@ -9,9 +9,13 @@ import { getConfiguration, getMaxRange } from './utils';
 
 const defaultLanguages = ['javascript', 'typescript'];
 
+export const skipFileSorting = (fileName: string) => {
+  const skipTypeDefs = getConfiguration<boolean>('ignore-type-defs');
+  return skipTypeDefs && fileName.endsWith('.d.ts');
+};
+
 export function sort(document: TextDocument): string | null {
   const languages = getConfiguration<string[]>('languages') || defaultLanguages;
-  const skipTypeDefs = getConfiguration<boolean>('ignore-type-defs');
 
   const isValidLanguage = languages.some(language =>
     document.languageId.includes(language)
@@ -26,7 +30,7 @@ export function sort(document: TextDocument): string | null {
   const extension = extname(fileName);
   const directory = dirname(fileName);
 
-  if (skipTypeDefs && fileName.endsWith('.d.ts')) {
+  if (skipFileSorting(fileName)) {
     return;
   }
 
