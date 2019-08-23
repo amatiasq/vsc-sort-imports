@@ -1,4 +1,5 @@
-import { commands, ExtensionContext, workspace } from 'vscode';
+import { ExtensionContext, commands, workspace } from 'vscode';
+import { fileListener } from './config-cache';
 import onSave from './on-save';
 import { saveWithoutSorting, sortCurrentDocument } from './sort';
 import { EXTENSION_NAME } from './utils';
@@ -11,7 +12,8 @@ export function activate({ subscriptions }: ExtensionContext) {
     commands.registerCommand(
       EXTENSION_NAME + '.save-without-sorting',
       saveWithoutSorting
-    )
+    ),
+    fileListener()
   );
 
   onSave.update();
