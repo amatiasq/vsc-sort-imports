@@ -1,16 +1,11 @@
 import { dirname, extname } from 'path';
 import importSort from 'import-sort';
-import { DEFAULT_CONFIGS, getConfig } from 'import-sort-config';
 import { TextDocument, window } from 'vscode';
+import { getConfig } from './config-cache';
 import onSave from './on-save';
 import { getConfiguration, getMaxRange } from './utils';
 
-// const findImports = /^import [^\n]+\n+/gm;
 const defaultLanguages = ['javascript', 'typescript'];
-
-let cachedParser: string;
-let cachedStyle: string;
-let cachedOptions: object;
 
 export function sort(document: TextDocument): string {
   const languages = getConfiguration<string[]>('languages') || defaultLanguages;
@@ -33,38 +28,14 @@ export function sort(document: TextDocument): string {
     return;
   }
 
-  const config = clone(DEFAULT_CONFIGS);
-  const defaultSortStyle = getConfiguration<string>('default-sort-style');
-
-  Object.keys(config).forEach(key => {
-    config[key].style = require.resolve(
-      `import-sort-style-${defaultSortStyle}`
-    );
-  });
-
-  const useCache = getConfiguration<boolean>(
-    'cache-package-json-config-checks'
-  );
-
   try {
-    if (!useCache || !cachedParser) {
-      const {
-        parser,
-        style,
-        config: { options }
-      } = getConfig(extension, directory, config);
-      cachedParser = parser;
-      cachedStyle = style;
-      cachedOptions = options;
-    }
+    const {
+      parser,
+      style,
+      config: { options }
+    } = getConfig(extension, directory);
 
-    const result = importSort(
-      currentText,
-      cachedParser,
-      cachedStyle,
-      fileName,
-      cachedOptions
-    );
+    const result = importSort(currentText, parser, style, fileName, options);
     return result.code;
   } catch (exception) {
     if (!getConfiguration<boolean>('suppress-warnings')) {
@@ -92,8 +63,4 @@ export function sortCurrentDocument() {
 export async function saveWithoutSorting() {
   const { document } = window.activeTextEditor;
   onSave.bypass(async () => await document.save());
-}
-
-function clone(object) {
-  return JSON.parse(JSON.stringify(object));
 }

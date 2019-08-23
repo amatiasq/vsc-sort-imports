@@ -26,7 +26,7 @@ This extension has the following settings:
 - `sort-imports.suppress-warnings`: suppress warnings if sorting imports fails (default: `false`).
 - `sort-imports.ignore-type-defs`: will not sort `.d.ts` files by default since import-sort doesn't handle them well (default: `true`).
 - `sort-imports.languages`: selectively choose the languages which should be sported (default: `['javascript', 'typescript']`).
-- `sort-imports.cache-package-json-config-checks`: performance optimization, disable if necessary (default: `true`).
+- `sort-imports.cache-package-json-config-checks`: The sort config is only checked when config files change as a performance optimization, disable if necessary (default: `true`).
 
 ### Obsolete settings
 
