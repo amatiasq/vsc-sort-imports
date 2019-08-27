@@ -59,11 +59,6 @@
           "default": true,
           "description": "Automatically sort imports on save."
         },
-        "sort-imports.suppress-warnings": {
-          "type": "boolean",
-          "default": false,
-          "description": "Suppress warnings when sorting fails."
-        },
         "sort-imports.ignore-type-defs": {
           "type": "boolean",
           "default": true,
@@ -119,6 +114,7 @@
     "vscode": "^1.1.35"
   },
   "dependencies": {
+    "@babel/code-frame": "^7.5.5",
     "import-sort": "^6.0.0",
     "import-sort-config": "^6.0.0",
     "import-sort-parser-babylon": "^6.0.0",
