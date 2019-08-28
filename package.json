@@ -2,7 +2,7 @@
   "name": "sort-imports",
   "displayName": "sort-imports",
   "description": "Sort ES6 imports automatically.",
-  "version": "6.0.2",
+  "version": "6.1.0",
   "galleryBanner": {
     "color": "#2980b9",
     "theme": "dark"
