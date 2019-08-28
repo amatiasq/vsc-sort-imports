@@ -76,6 +76,20 @@ npm i -D import-sort-parser-typescript
 
 ## Release Notes
 
+### 6.1.0
+
+- Improve config caching by listening for file changes on config files
+- Move from an error toast to a status bar icon and panel. Click the "Sort Imports" text in the lower right to detailed errors.
+- Don't sort `.d.ts` files by default since `import-sort` handles them incorrectly (you can disable this feature via the new `sort-imports.ignore-type-defs` configuration option)
+
+### 6.0.2
+
+- Upgrade import-sort to v6
+
+### 6.0.0
+
+- Upgrade dependencies
+
 ### 5.1.0
 
 - Add support to importSort additional options [(thanks @fsmaia)](https://github.com/amatiasq/vsc-sort-imports/pull/19)
