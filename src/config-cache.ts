@@ -38,12 +38,12 @@ export function fileListener() {
   return fileWatcher;
 }
 
-function workspaceFolderChange(document: TextDocument): boolean {
+function workspaceFolderChanged(document: TextDocument): boolean {
   if (!currentWorkspaceFolder) {
     currentWorkspaceFolder = workspace.getWorkspaceFolder(document.uri);
     return false;
   }
-  return currentWorkspaceFolder === workspace.getWorkspaceFolder(document.uri);
+  return currentWorkspaceFolder !== workspace.getWorkspaceFolder(document.uri);
 }
 
 export function getConfig(document: TextDocument) {
@@ -60,7 +60,7 @@ export function getConfig(document: TextDocument) {
     );
   });
 
-  if (!useCache || workspaceFolderChange(document) || !cachedConfig) {
+  if (!useCache || workspaceFolderChanged(document) || !cachedConfig) {
     cachedConfig = sortGetConfig(
       extname(document.fileName),
       dirname(document.fileName),
