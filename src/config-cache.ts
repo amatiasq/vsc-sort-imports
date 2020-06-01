@@ -38,7 +38,7 @@ export function fileListener() {
   return fileWatcher;
 }
 
-function workspaceFolderChanged(document: TextDocument): boolean {
+function hasWorkspaceFolderChanged(document: TextDocument): boolean {
   if (!currentWorkspaceFolder) {
     currentWorkspaceFolder = workspace.getWorkspaceFolder(document.uri);
     return false;
@@ -60,7 +60,7 @@ export function getConfig(document: TextDocument) {
     );
   });
 
-  if (!useCache || workspaceFolderChanged(document) || !cachedConfig) {
+  if (!useCache || hasWorkspaceFolderChanged(document) || !cachedConfig) {
     cachedConfig = sortGetConfig(
       extname(document.fileName),
       dirname(document.fileName),
