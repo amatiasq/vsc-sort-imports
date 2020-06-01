@@ -65,7 +65,7 @@ export function getConfig(document: TextDocument) {
     );
   });
 
-  if (!useCache || hasWorkspaceFolderChanged(document) || !cachedConfig) {
+  if (!useCache || !cachedConfig || hasWorkspaceFolderChanged(document)) {
     cachedConfig = sortGetConfig(
       extname(document.fileName),
       dirname(document.fileName),
