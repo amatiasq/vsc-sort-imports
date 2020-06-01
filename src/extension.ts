@@ -1,9 +1,10 @@
 import { ExtensionContext, commands, window, workspace } from 'vscode';
-import { fileListener } from './config-cache';
-import { setupErrorHandler, toggleStatusBarItem } from './errorHandler';
-import onSave from './on-save';
 import { saveWithoutSorting, sortCurrentDocument } from './sort';
+import { setupErrorHandler, toggleStatusBarItem } from './errorHandler';
+
 import { EXTENSION_NAME } from './utils';
+import { fileListener } from './config-cache';
+import onSave from './on-save';
 
 export function activate({ subscriptions }: ExtensionContext) {
   subscriptions.push(
@@ -20,6 +21,7 @@ export function activate({ subscriptions }: ExtensionContext) {
   );
 
   onSave.update();
+  workspace.onDidChangeWorkspaceFolders(() => onSave.update());
   workspace.onDidChangeConfiguration(() => onSave.update());
 }
 

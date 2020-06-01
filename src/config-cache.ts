@@ -3,8 +3,9 @@ import {
   IResolvedConfig,
   getConfig as sortGetConfig
 } from 'import-sort-config';
-import { workspace } from 'vscode';
+
 import { getConfiguration } from './utils';
+import { workspace } from 'vscode';
 
 let cachedConfig: IResolvedConfig | null;
 const CONFIG_FILES = [

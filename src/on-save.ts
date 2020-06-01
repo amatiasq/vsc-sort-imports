@@ -1,14 +1,15 @@
 import {
   Disposable,
-  TextDocumentWillSaveEvent,
-  workspace,
-  window,
-  TextEditorEdit,
   TextDocument,
-  TextEdit
+  TextDocumentWillSaveEvent,
+  TextEdit,
+  TextEditorEdit,
+  window,
+  workspace
 } from 'vscode';
-import { sort } from './sort';
 import { getConfiguration, getMaxRange } from './utils';
+
+import { sort } from './sort';
 
 let subscription: Disposable;
 
