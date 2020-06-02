@@ -39,6 +39,10 @@ export function fileListener() {
 }
 
 function hasWorkspaceFolderChanged(document: TextDocument): boolean {
+  if (!workspace.workspaceFolders || workspace.workspaceFolders.length < 2) {
+    return false;
+  }
+
   if (!currentWorkspaceFolder) {
     currentWorkspaceFolder = workspace.getWorkspaceFolder(document.uri);
     return false;
