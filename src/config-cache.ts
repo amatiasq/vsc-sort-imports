@@ -43,7 +43,8 @@ function hasWorkspaceFolderChanged(document: TextDocument): boolean {
     currentWorkspaceFolder = workspace.getWorkspaceFolder(document.uri);
     return false;
   } else if (
-    currentWorkspaceFolder !== workspace.getWorkspaceFolder(document.uri)
+    JSON.stringify(currentWorkspaceFolder) !==
+    JSON.stringify(workspace.getWorkspaceFolder(document.uri))
   ) {
     currentWorkspaceFolder = workspace.getWorkspaceFolder(document.uri);
     return true;
