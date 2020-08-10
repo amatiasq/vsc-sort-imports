@@ -76,6 +76,10 @@ npm i -D import-sort-parser-typescript
 
 ## Release Notes
 
+### 6.1.X
+
+- Add workspace support with several folders and different configurations
+
 ### 6.1.0
 
 - Improve config caching by listening for file changes on config files
