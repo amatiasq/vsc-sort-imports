@@ -28,6 +28,7 @@
   "keywords": [
     "ES6",
     "ES2015",
+    "ES2019",
     "Sort",
     "Sorting",
     "Import"
@@ -39,7 +40,7 @@
     "onLanguage:typescript",
     "onLanguage:typescriptreact"
   ],
-  "main": "./out/src/extension",
+  "main": "./out/src/extension.js",
   "contributes": {
     "commands": [
       {
@@ -86,10 +87,10 @@
     }
   },
   "scripts": {
-    "vscode:prepublish": "tsc -p ./",
-    "compile": "tsc -watch -p ./",
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
     "format": "prettier 'src/**/*.ts' --write",
-    "postinstall": "node ./node_modules/vscode/bin/install"
+    "watch": "tsc -watch -p ./"
   },
   "prettier": {
     "singleQuote": true
@@ -106,15 +107,16 @@
     }
   },
   "devDependencies": {
-    "@types/node": "^10.5.1",
-    "husky": "^3.0.0",
-    "lint-staged": "^9.2.0",
-    "prettier": "^1.18.2",
-    "typescript": "^2.9.2",
-    "vscode": "^1.1.35"
+    "@types/node": "^10.17.28",
+    "@types/vscode": "^1.47.0",
+    "husky": "^3.1.0",
+    "lint-staged": "^9.5.0",
+    "prettier": "^1.19.1",
+    "typescript": "^3.9.7",
+    "vscode-test": "^1.4.0"
   },
   "dependencies": {
-    "@babel/code-frame": "^7.5.5",
+    "@babel/code-frame": "^7.10.4",
     "import-sort": "^6.0.0",
     "import-sort-config": "^6.0.0",
     "import-sort-parser-babylon": "^6.0.0",

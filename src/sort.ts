@@ -1,11 +1,11 @@
-import { dirname, extname } from 'path';
-import importSort from 'import-sort';
 import { TextDocument, window } from 'vscode';
+import { getConfiguration, getMaxRange } from './utils';
+
 import { codeFrameColumns } from '@babel/code-frame';
 import { getConfig } from './config-cache';
-import { safeExecution } from './errorHandler';
+import importSort from 'import-sort';
 import onSave from './on-save';
-import { getConfiguration, getMaxRange } from './utils';
+import { safeExecution } from './errorHandler';
 
 const defaultLanguages = ['javascript', 'typescript'];
 
@@ -27,8 +27,6 @@ export function sort(document: TextDocument): string | null {
 
   const currentText = document.getText();
   const fileName = document.fileName;
-  const extension = extname(fileName);
-  const directory = dirname(fileName);
 
   if (skipFileSorting(fileName)) {
     return;
@@ -40,7 +38,7 @@ export function sort(document: TextDocument): string | null {
         parser,
         style,
         config: { options }
-      } = getConfig(extension, directory);
+      } = getConfig(document);
 
       try {
         const result = importSort(

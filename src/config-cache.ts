@@ -3,9 +3,12 @@ import {
   IResolvedConfig,
   getConfig as sortGetConfig
 } from 'import-sort-config';
-import { workspace } from 'vscode';
+import { TextDocument, WorkspaceFolder, workspace } from 'vscode';
+import { dirname, extname } from 'path';
+
 import { getConfiguration } from './utils';
 
+let currentWorkspaceFolder: WorkspaceFolder;
 let cachedConfig: IResolvedConfig | null;
 const CONFIG_FILES = [
   '.importsortrc',
@@ -35,7 +38,25 @@ export function fileListener() {
   return fileWatcher;
 }
 
-export function getConfig(extension: string, directory: string) {
+function hasWorkspaceFolderChanged(document: TextDocument): boolean {
+  if (!workspace.workspaceFolders || workspace.workspaceFolders.length < 2) {
+    return false;
+  }
+
+  if (!currentWorkspaceFolder) {
+    currentWorkspaceFolder = workspace.getWorkspaceFolder(document.uri);
+    return false;
+  } else if (
+    JSON.stringify(currentWorkspaceFolder) !==
+    JSON.stringify(workspace.getWorkspaceFolder(document.uri))
+  ) {
+    currentWorkspaceFolder = workspace.getWorkspaceFolder(document.uri);
+    return true;
+  }
+  return false;
+}
+
+export function getConfig(document: TextDocument) {
   const useCache = getConfiguration<boolean>(
     'cache-package-json-config-checks'
   );
@@ -49,8 +70,12 @@ export function getConfig(extension: string, directory: string) {
     );
   });
 
-  if (!useCache || !cachedConfig) {
-    cachedConfig = sortGetConfig(extension, directory, config);
+  if (!useCache || !cachedConfig || hasWorkspaceFolderChanged(document)) {
+    cachedConfig = sortGetConfig(
+      extname(document.fileName),
+      dirname(document.fileName),
+      config
+    );
   }
 
   return cachedConfig;
