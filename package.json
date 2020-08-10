@@ -107,16 +107,16 @@
     }
   },
   "devDependencies": {
-    "@types/node": "^10.17.24",
-    "@types/vscode": "^1.45.1",
+    "@types/node": "^10.17.28",
+    "@types/vscode": "^1.47.0",
     "husky": "^3.1.0",
     "lint-staged": "^9.5.0",
     "prettier": "^1.19.1",
-    "typescript": "^3.9.5",
+    "typescript": "^3.9.7",
     "vscode-test": "^1.4.0"
   },
   "dependencies": {
-    "@babel/code-frame": "^7.10.1",
+    "@babel/code-frame": "^7.10.4",
     "import-sort": "^6.0.0",
     "import-sort-config": "^6.0.0",
     "import-sort-parser-babylon": "^6.0.0",
