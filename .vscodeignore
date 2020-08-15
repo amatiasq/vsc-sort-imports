@@ -1,9 +1,13 @@
-.vscode/**
-typings/**
-out/test/**
-test/**
-src/**
+.vscode
+.vscode-test
+# node_modules
+# out/
+out/test
+src/
+**/*.ts
 **/*.map
 .gitignore
 tsconfig.json
-vsc-extension-quickstart.md
+webpack.config.js
+package-json.lock
+yarn.lock
