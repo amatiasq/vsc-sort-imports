@@ -1,13 +1,20 @@
 .vscode
 .vscode-test
-# node_modules
-# out/
-out/test
+node_modules/.bin
+node_modules/.cache
+node_modules/husky
+node_modules/lint-staged
+node_modules/mocha
+node_modules/prettier
+node_modules/source-map-support
+node_modules/typescript
+node_modules/vsce
+node_modules/vscode-test
+out/test/
 src/
 **/*.ts
 **/*.map
 .gitignore
 tsconfig.json
-webpack.config.js
 package-json.lock
 yarn.lock

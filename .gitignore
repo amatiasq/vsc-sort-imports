@@ -6,7 +6,6 @@
 !.vscode/extensions.json
 *.code-workspace
 
-dist
 out
 node_modules
 npm-debug.log*

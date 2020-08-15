@@ -79,7 +79,6 @@ npm i -D import-sort-parser-typescript
 ### 6.1.1
 
 - Add workspace support with several folders and different configurations
-- Bundle the code extension to reduce its size
 
 ### 6.1.0
 
