@@ -76,7 +76,7 @@ npm i -D import-sort-parser-typescript
 
 ## Release Notes
 
-### 6.1.1
+### 6.2.0
 
 - Add workspace support with several folders and different configurations
 
