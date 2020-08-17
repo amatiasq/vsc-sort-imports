@@ -15,7 +15,7 @@ export function activate({ subscriptions }: ExtensionContext) {
     ),
     fileListener(),
     setupErrorHandler(),
-    window.onDidChangeActiveTextEditor(editor => {
+    window.onDidChangeActiveTextEditor((editor) => {
       toggleStatusBarItem(editor);
     })
   );

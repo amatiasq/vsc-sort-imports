@@ -5,7 +5,7 @@ import {
   StatusBarItem,
   TextEditor,
   commands,
-  window
+  window,
 } from 'vscode';
 
 import { EXTENSION_NAME } from './utils';
@@ -18,7 +18,7 @@ const supportedLanguages = [
   'javascript',
   'javascriptreact',
   'typescript',
-  'typescriptreact'
+  'typescriptreact',
 ];
 
 export function toggleStatusBarItem(editor: TextEditor | undefined): void {
@@ -31,7 +31,9 @@ export function toggleStatusBarItem(editor: TextEditor | undefined): void {
     // It also triggers when we focus on the output panel or on the debug panel
     // Both are seen as an "editor".
     // The following check will ignore such panels
-    if (['debug', 'output'].some(part => editor.document.uri.scheme === part)) {
+    if (
+      ['debug', 'output'].some((part) => editor.document.uri.scheme === part)
+    ) {
       return;
     }
 

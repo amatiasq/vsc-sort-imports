@@ -1,7 +1,7 @@
 import {
   DEFAULT_CONFIGS,
   IResolvedConfig,
-  getConfig as sortGetConfig
+  getConfig as sortGetConfig,
 } from 'import-sort-config';
 import { TextDocument, WorkspaceFolder, workspace } from 'vscode';
 import { dirname, extname } from 'path';
@@ -17,7 +17,7 @@ const CONFIG_FILES = [
   '.importsortrc.yml',
   '.importsortrc.js',
   'package.json',
-  'importsort.config.js'
+  'importsort.config.js',
 ];
 
 function clearCache() {
@@ -64,7 +64,7 @@ export function getConfig(document: TextDocument) {
   const config = clone(DEFAULT_CONFIGS);
   const defaultSortStyle = getConfiguration<string>('default-sort-style');
 
-  Object.keys(config).forEach(key => {
+  Object.keys(config).forEach((key) => {
     config[key].style = require.resolve(
       `import-sort-style-${defaultSortStyle}`
     );

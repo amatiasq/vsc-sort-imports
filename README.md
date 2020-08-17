@@ -62,6 +62,11 @@ By default, `sort-import` comes with these styles:
 
 - [`import-sort-style-module-compact`](https://github.com/amatiasq/import-sort-style-module-compact): Similar to modules but with fewer groups.
 
+- [`import-sort-style-module-scoped`](https://github.com/cliffkoh/import-sort-style-module-scoped): A style for import-sort that is focused on modules but with scope support.
+
+- [`import-sort-style-renke`](packages/import-sort-style-renke): Renke's
+  personal style.
+
 PRs with more styles are welcome.
 
 ## Troubleshooting
@@ -75,6 +80,10 @@ npm i -D import-sort-parser-typescript
 ```
 
 ## Release Notes
+
+### 6.2.1
+
+- Add missing parsers and styles dependencies
 
 ### 6.2.0
 

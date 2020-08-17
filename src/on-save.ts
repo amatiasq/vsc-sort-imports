@@ -5,7 +5,7 @@ import {
   TextEdit,
   TextEditorEdit,
   window,
-  workspace
+  workspace,
 } from 'vscode';
 import { getConfiguration, getMaxRange } from './utils';
 
@@ -46,11 +46,11 @@ export default {
   bypass(action) {
     this.unregister();
     const result = action();
-    return result.then(res => {
+    return result.then((res) => {
       this.update();
       return res;
     });
-  }
+  },
 };
 
 function listener({ document, waitUntil }: TextDocumentWillSaveEvent) {

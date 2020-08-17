@@ -17,7 +17,7 @@ export const skipFileSorting = (fileName: string) => {
 export function sort(document: TextDocument): string | null {
   const languages = getConfiguration<string[]>('languages') || defaultLanguages;
 
-  const isValidLanguage = languages.some(language =>
+  const isValidLanguage = languages.some((language) =>
     document.languageId.includes(language)
   );
 
@@ -37,7 +37,7 @@ export function sort(document: TextDocument): string | null {
       const {
         parser,
         style,
-        config: { options }
+        config: { options },
       } = getConfig(document);
 
       try {
@@ -66,7 +66,7 @@ export function sort(document: TextDocument): string | null {
 export function sortCurrentDocument() {
   const {
     activeTextEditor: editor,
-    activeTextEditor: { document }
+    activeTextEditor: { document },
   } = window;
 
   const sortedText = sort(document);
@@ -74,7 +74,7 @@ export function sortCurrentDocument() {
     return;
   }
 
-  return editor.edit(edit => edit.replace(getMaxRange(), sortedText));
+  return editor.edit((edit) => edit.replace(getMaxRange(), sortedText));
 }
 
 export async function saveWithoutSorting() {
