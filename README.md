@@ -54,7 +54,7 @@ Just add the following to your `package.json` and adapt it to your liking:
 
 The keys are a list of file extensions that map to the parser and style that should be used for files that have any of the listed file extensions.
 
-By default, `sort-import` comes with these styles:
+By default, `sort-imports` comes with these styles:
 
 - [`import-sort-style-eslint` (default)](https://github.com/renke/import-sort/tree/master/packages/import-sort-style-eslint): A style that that is compatible with [ESLint's](http://eslint.org/) [sort-imports](https://eslint.org/docs/rules/sort-imports) rule.
 
