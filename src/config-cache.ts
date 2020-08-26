@@ -42,11 +42,7 @@ function hasWorkspaceFolderChanged(document: TextDocument): boolean {
   if (!workspace.workspaceFolders || workspace.workspaceFolders.length < 2) {
     return false;
   }
-
-  if (!currentWorkspaceFolder) {
-    currentWorkspaceFolder = workspace.getWorkspaceFolder(document.uri);
-    return false;
-  } else if (
+  if (
     JSON.stringify(currentWorkspaceFolder) !==
     JSON.stringify(workspace.getWorkspaceFolder(document.uri))
   ) {
@@ -69,6 +65,11 @@ export function getConfig(document: TextDocument) {
       `import-sort-style-${defaultSortStyle}`
     );
   });
+
+  // Initialize reference to the document current workspace folder
+  if (!currentWorkspaceFolder) {
+    currentWorkspaceFolder = workspace.getWorkspaceFolder(document.uri);
+  }
 
   if (!useCache || !cachedConfig || hasWorkspaceFolderChanged(document)) {
     cachedConfig = sortGetConfig(

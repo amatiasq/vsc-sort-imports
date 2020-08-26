@@ -81,6 +81,10 @@ npm i -D import-sort-parser-typescript
 
 ## Release Notes
 
+### 6.2.2
+
+- Fix current document workspace folder initialization
+
 ### 6.2.1
 
 - Add missing parsers and styles dependencies

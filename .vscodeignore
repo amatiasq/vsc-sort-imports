@@ -6,6 +6,7 @@ node_modules/husky
 node_modules/lint-staged
 node_modules/mocha
 node_modules/prettier
+node_modules/rimraf
 node_modules/source-map-support
 node_modules/typescript
 node_modules/vsce
