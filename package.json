@@ -116,17 +116,17 @@
   "devDependencies": {
     "@types/glob": "^7.1.3",
     "@types/mocha": "^8.0.3",
-    "@types/node": "^14.6.0",
+    "@types/node": "^14.6.2",
     "@types/vscode": "^1.48.0",
     "glob": "^7.1.6",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.13",
-    "mocha": "^8.1.2",
+    "mocha": "^8.1.3",
     "prettier": "^2.1.1",
     "rimraf": "^3.0.2",
     "source-map-support": "^0.5.19",
-    "typescript": "^3.9.7",
-    "vsce": "^1.79.3",
+    "typescript": "^4.0.2",
+    "vsce": "^1.79.5",
     "vscode-test": "^1.4.0"
   },
   "dependencies": {
