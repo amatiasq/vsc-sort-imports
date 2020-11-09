@@ -24,7 +24,7 @@ This extension has the following settings:
 - `sort-imports.default-sort-style`: sorting style if `package.json` doesn't have `import-sort` key (default: `eslint`).
 - `sort-imports.on-save`: enable/disable auto sorting on save (default: `true`).
 - `sort-imports.ignore-type-defs`: will not sort `.d.ts` files by default since import-sort doesn't handle them well (default: `true`).
-- `sort-imports.languages`: selectively choose the languages which should be sported (default: `['javascript', 'typescript']`).
+- `sort-imports.languages`: selectively choose the languages which should be sorted (default: `['javascript', 'typescript']`).
 - `sort-imports.cache-package-json-config-checks`: The sort config is only checked when config files change as a performance optimization, disable if necessary (default: `true`).
 
 ### Obsolete settings
