@@ -14,3 +14,5 @@ yarn-error.log*
 lerna-debug.log*
 .vscode-test
 *.vsix
+
+.DS_Store
