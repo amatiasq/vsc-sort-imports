@@ -3,7 +3,12 @@ import {
   IResolvedConfig,
   getConfig as sortGetConfig,
 } from 'import-sort-config';
-import { TextDocument, WorkspaceFolder, workspace } from 'vscode';
+import {
+  FileSystemWatcher,
+  TextDocument,
+  WorkspaceFolder,
+  workspace,
+} from 'vscode';
 import { dirname, extname } from 'path';
 
 import { getConfiguration } from './utils';
@@ -24,11 +29,11 @@ function clearCache() {
   cachedConfig = null;
 }
 
-function clone(object) {
-  return JSON.parse(JSON.stringify(object));
+function clone<T>(object: T): T {
+  return JSON.parse(JSON.stringify(object)) as T;
 }
 
-export function fileListener() {
+export function fileListener(): FileSystemWatcher {
   const fileWatcher = workspace.createFileSystemWatcher(
     `**/{${CONFIG_FILES.join(',')}}`
   );
@@ -52,7 +57,7 @@ function hasWorkspaceFolderChanged(document: TextDocument): boolean {
   return false;
 }
 
-export function getConfig(document: TextDocument) {
+export function getConfig(document: TextDocument): IResolvedConfig {
   const useCache = getConfiguration<boolean>(
     'cache-package-json-config-checks'
   );

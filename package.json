@@ -97,14 +97,15 @@
     "pretest": "npm run compile",
     "test": "node ./out/test/runTest.js",
     "install-package": "npm run vsce:package && code --install-extension ./sort-imports-$npm_package_version.vsix",
-    "format": "prettier 'src/**/*.ts' --write"
+    "lint": "eslint --ext .js,.ts src",
+    "lint:fix": "eslint --fix --ext .js,.ts src"
   },
   "prettier": {
     "singleQuote": true
   },
   "lint-staged": {
     "*.ts": [
-      "prettier --write",
+      "eslint --fix",
       "git add"
     ]
   },
@@ -118,6 +119,11 @@
     "@types/mocha": "^8.2.0",
     "@types/node": "^14.14.16",
     "@types/vscode": "^1.52.0",
+    "@typescript-eslint/eslint-plugin": "^4.11.0",
+    "@typescript-eslint/parser": "^4.11.0",
+    "eslint": "^7.16.0",
+    "eslint-config-prettier": "^7.1.0",
+    "eslint-plugin-prettier": "^3.3.0",
     "glob": "^7.1.6",
     "husky": "^4.3.6",
     "lint-staged": "^10.5.3",

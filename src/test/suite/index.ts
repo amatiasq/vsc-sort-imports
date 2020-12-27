@@ -14,7 +14,7 @@ import * as Mocha from 'mocha';
 import * as glob from 'glob';
 import * as path from 'path';
 
-export function run(): Promise<void> {
+export async function run(): Promise<void> {
   // Create the mocha test
   const mocha = new Mocha({
     ui: 'tdd',
@@ -41,9 +41,9 @@ export function run(): Promise<void> {
             c();
           }
         });
-      } catch (err) {
-        console.error(err);
-        e(err);
+      } catch (error) {
+        console.error(error);
+        e(error);
       }
     });
   });

@@ -6,7 +6,7 @@ import { EXTENSION_NAME } from './utils';
 import { fileListener } from './config-cache';
 import onSave from './on-save';
 
-export function activate({ subscriptions }: ExtensionContext) {
+export function activate({ subscriptions }: ExtensionContext): void {
   subscriptions.push(
     commands.registerCommand(EXTENSION_NAME + '.sort', sortCurrentDocument),
     commands.registerCommand(
@@ -25,4 +25,5 @@ export function activate({ subscriptions }: ExtensionContext) {
   workspace.onDidChangeConfiguration(() => onSave.update());
 }
 
-export function deactivate() {}
+// eslint-disable-next-line @typescript-eslint/no-empty-function
+export function deactivate(): void {}

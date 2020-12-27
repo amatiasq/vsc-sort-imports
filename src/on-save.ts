@@ -13,66 +13,66 @@ import { sort } from './sort';
 
 let subscription: Disposable;
 
-export default {
-  get isEnabled() {
+export default class OnSave {
+  private static get isEnabled(): boolean {
     return getConfiguration<boolean>('on-save');
-  },
+  }
 
-  register() {
+  static register(): void {
     if (subscription) {
       return;
     }
 
-    subscription = workspace.onWillSaveTextDocument(listener);
-  },
+    subscription = workspace.onWillSaveTextDocument(OnSave.listener.bind(this));
+  }
 
-  unregister() {
+  static unregister(): void {
     if (!subscription) {
       return;
     }
 
     subscription.dispose();
     subscription = null;
-  },
+  }
 
-  update() {
-    if (this.isEnabled) {
-      this.register();
+  static update(): void {
+    if (OnSave.isEnabled) {
+      OnSave.register();
     } else {
-      this.unregister();
+      OnSave.unregister();
     }
-  },
+  }
 
-  bypass(action) {
-    this.unregister();
+  static bypass(action: () => Thenable<boolean>): Thenable<boolean> {
+    OnSave.unregister();
     const result = action();
     return result.then((res) => {
-      this.update();
+      OnSave.update();
       return res;
     });
-  },
-};
-
-function listener({ document, waitUntil }: TextDocumentWillSaveEvent) {
-  const sortedText = sort(document);
-  if (!sortedText) {
-    return;
   }
 
-  waitUntil(changeContentOfDocument(document, sortedText));
-}
+  private static listener({ document, waitUntil }: TextDocumentWillSaveEvent) {
+    const sortedText = sort(document);
+    if (!sortedText) {
+      return;
+    }
 
-function changeContentOfDocument(document: TextDocument, sortedText) {
-  const editor = window.activeTextEditor;
-  const savingActiveDocument = document === editor.document;
-
-  const maxRange = getMaxRange();
-
-  if (savingActiveDocument) {
-    return editor.edit((edit: TextEditorEdit) => {
-      edit.replace(maxRange, sortedText);
-    });
+    waitUntil(OnSave.changeContentOfDocument(document, sortedText));
   }
 
-  return Promise.resolve([new TextEdit(maxRange, sortedText)]);
+  private static changeContentOfDocument(document: TextDocument, sortedText) {
+    const editor = window.activeTextEditor;
+    const savingActiveDocument = document === editor.document;
+
+    const maxRange = getMaxRange();
+
+    if (savingActiveDocument) {
+      return editor.edit((edit: TextEditorEdit) => {
+        edit.replace(maxRange, sortedText);
+      });
+    }
+
+    return Promise.resolve([new TextEdit(maxRange, sortedText)]);
+  }
 }
