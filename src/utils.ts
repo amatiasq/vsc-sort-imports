@@ -14,6 +14,6 @@ export function clone<T>(object: T): T {
   return JSON.parse(JSON.stringify(object)) as T;
 }
 
-export function isUndefined(object: any): boolean {
+export function isUndefined<T>(object: T): boolean {
   return typeof object === 'undefined';
 }
