@@ -81,6 +81,11 @@ npm i -D import-sort-parser-typescript
 
 ## Release Notes
 
+### 6.2.3
+
+- Security upgrade on dependencies
+- Safe types checking
+
 ### 6.2.2
 
 - Fix current document workspace folder initialization
@@ -120,7 +125,7 @@ npm i -D import-sort-parser-typescript
 - Implemented by [@cliffkoh](https://github.com/cliffkoh)
   - Introduced `sort-imports.default-sort-style`, which defaults to `eslint`. Other possible values are `module`, `module-compact` and `module-scoped`.
   - Introduced `sort-imports.cache-package-json-config-checks` which defaults to `true`. When true, will cache calls to `import-sort-config` thereby improving performance
-    (avoids repeated non-trival disk lookups and parsing).
+    (avoids repeated non-trivial disk lookups and parsing).
   - Fixed bug in `Save file without sorting import` which caused it to not work.
 
 #### 4.0.0
@@ -128,7 +133,7 @@ npm i -D import-sort-parser-typescript
 Update to ease transition from [@peterjuras' extension](https://github.com/peterjuras/vsc-sort-imports).
 
 - `sort-imports.blank-lines-after`: removed until a valid implementation is provided
-- `sort-imports.sort-type`: you can now configure your sorting type folowing with a key in your `package.json`. [Documentation](https://github.com/renke/import-sort#using-a-different-style-or-parser)
+- `sort-imports.sort-type`: you can now configure your sorting type following with a key in your `package.json`. [Documentation](https://github.com/renke/import-sort#using-a-different-style-or-parser)
   - `by-module-name`: is now `"style": "module-compact"`
   - `by-imported-name`: is removed
 

@@ -9,9 +9,8 @@ import {
   WorkspaceFolder,
   workspace,
 } from 'vscode';
+import { clone, getConfiguration } from './utils';
 import { dirname, extname } from 'path';
-
-import { getConfiguration } from './utils';
 
 let currentWorkspaceFolder: WorkspaceFolder;
 let cachedConfig: IResolvedConfig | null;
@@ -27,10 +26,6 @@ const CONFIG_FILES = [
 
 function clearCache() {
   cachedConfig = null;
-}
-
-function clone<T>(object: T): T {
-  return JSON.parse(JSON.stringify(object)) as T;
 }
 
 export function fileListener(): FileSystemWatcher {

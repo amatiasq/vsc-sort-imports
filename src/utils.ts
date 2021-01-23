@@ -9,3 +9,7 @@ export function getConfiguration<T>(key: string): T {
 export function getMaxRange(): Range {
   return new Range(0, 0, Number.MAX_VALUE, Number.MAX_VALUE);
 }
+
+export function clone<T>(object: T): T {
+  return JSON.parse(JSON.stringify(object)) as T;
+}
