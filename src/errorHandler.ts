@@ -9,6 +9,7 @@ import {
 } from 'vscode';
 
 import { EXTENSION_NAME } from './utils';
+import { isUndefined } from 'util';
 import { skipFileSorting } from './sort';
 
 let statusBarItem: StatusBarItem;
@@ -21,12 +22,12 @@ const supportedLanguages = [
   'typescriptreact',
 ];
 
-export function toggleStatusBarItem(editor: TextEditor | undefined): void {
-  if (typeof statusBarItem === 'undefined') {
+export function toggleStatusBarItem(editor: TextEditor): void {
+  if (isUndefined(statusBarItem)) {
     return;
   }
 
-  if (typeof editor !== 'undefined') {
+  if (!isUndefined(editor)) {
     // The function will be triggered every time the active "editor" instance changes
     // It also triggers when we focus on the output panel or on the debug panel
     // Both are seen as an "editor".

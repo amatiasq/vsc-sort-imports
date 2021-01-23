@@ -13,3 +13,7 @@ export function getMaxRange(): Range {
 export function clone<T>(object: T): T {
   return JSON.parse(JSON.stringify(object)) as T;
 }
+
+export function isUndefined(object: any): boolean {
+  return typeof object === 'undefined';
+}
