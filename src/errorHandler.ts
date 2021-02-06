@@ -7,9 +7,8 @@ import {
   commands,
   window,
 } from 'vscode';
+import { EXTENSION_NAME, isUndefined } from './utils';
 
-import { EXTENSION_NAME } from './utils';
-import { isUndefined } from 'util';
 import { skipFileSorting } from './sort';
 
 let statusBarItem: StatusBarItem;
