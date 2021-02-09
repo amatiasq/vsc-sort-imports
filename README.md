@@ -81,6 +81,10 @@ npm i -D import-sort-parser-typescript
 
 ## Release Notes
 
+### 6.2.4
+
+- Fix extension loading issue by forcing cosmiconfig version to 5.0.7
+
 ### 6.2.3
 
 - Security upgrade on dependencies
