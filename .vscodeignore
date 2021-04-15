@@ -16,6 +16,7 @@ src/
 **/*.ts
 **/*.tsx
 **/*.map
+*.sh
 .gitignore
 tsconfig.json
 package-json.lock
