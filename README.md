@@ -81,6 +81,10 @@ npm i -D import-sort-parser-typescript
 
 ## Release Notes
 
+### 6.2.5
+
+- See https://github.com/amatiasq/vsc-sort-imports/pull/83
+
 ### 6.2.4
 
 - Fix extension loading issue by forcing cosmiconfig version to 5.0.7
