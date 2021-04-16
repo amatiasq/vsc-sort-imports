@@ -81,9 +81,13 @@ npm i -D import-sort-parser-typescript
 
 ## Release Notes
 
+### 6.2.6
+
+- Make package.json prevail over extension configuration
+
 ### 6.2.5
 
-- See https://github.com/amatiasq/vsc-sort-imports/pull/83
+- Ensure current workspace folder can be resolved as an import-sort styles path
 
 ### 6.2.4
 
