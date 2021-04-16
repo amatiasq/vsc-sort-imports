@@ -17,7 +17,7 @@
   "icon": "assets/logo.png",
   "publisher": "amatiasq",
   "engines": {
-    "vscode": "^1.53.0"
+    "vscode": "^1.55.0"
   },
   "homepage": "https://github.com/amatiasq/vsc-sort-imports/blob/master/README.md",
   "license": "ISC",
