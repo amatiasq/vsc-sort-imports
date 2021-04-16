@@ -60,19 +60,14 @@ export function getConfig(document: TextDocument): IResolvedConfig {
   const config = clone(DEFAULT_CONFIGS);
   const defaultSortStyle = getConfiguration<string>('default-sort-style');
 
+  Object.keys(config).forEach((key) => {
+    config[key].style = `import-sort-style-${defaultSortStyle}`;
+  });
+
   // Initialize reference to the document current workspace folder
   if (!currentWorkspaceFolder) {
     currentWorkspaceFolder = workspace.getWorkspaceFolder(document.uri);
   }
-
-  Object.keys(config).forEach((key) => {
-    config[key].style = require.resolve(
-      `import-sort-style-${defaultSortStyle}`,
-      {
-        paths: [currentWorkspaceFolder.uri.path]
-      }
-    );
-  });
 
   if (!useCache || !cachedConfig || hasWorkspaceFolderChanged(document)) {
     cachedConfig = sortGetConfig(
