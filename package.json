@@ -146,6 +146,7 @@
     "import-sort-parser-babylon": "^6.0.0",
     "import-sort-parser-typescript": "^6.0.0",
     "import-sort-style-eslint": "^6.0.0",
+    "import-sort-style-for-react": "^1.0.3",
     "import-sort-style-module": "^6.0.0",
     "import-sort-style-module-compact": "^2.0.0",
     "import-sort-style-module-scoped": "^1.0.3",
