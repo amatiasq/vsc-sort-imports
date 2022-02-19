@@ -1688,6 +1688,13 @@ import-sort-style-eslint@^6.0.0:
     eslint "^5.0.0"
     lodash "^4.17.10"
 
+import-sort-style-for-react@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/import-sort-style-for-react/-/import-sort-style-for-react-1.0.3.tgz#9e36df74fc2ac7f2942887ed30956680481285ec"
+  integrity sha512-CKWR/Yqz1R6gaaYFaaUSeMwDUh9OXTbUVlDIDHT0bZwyX5vPO2Va2miU7Ua2Bzk3EP8CB6CYa9G2R85cwKAzzg==
+  dependencies:
+    import-sort-style "^4.2.0"
+
 import-sort-style-module-compact@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/import-sort-style-module-compact/-/import-sort-style-module-compact-2.0.0.tgz#7ffeb864b98e820a05ee8365bc458ab05d9683e7"

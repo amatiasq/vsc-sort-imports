@@ -67,6 +67,8 @@ By default, `sort-imports` comes with these styles:
 - [`import-sort-style-renke`](packages/import-sort-style-renke): Renke's
   personal style.
 
+- [`import-sort-style-for-react`](https://github.com/sosreader/import-sort-style-module-scoped): A style designed for react projects.
+
 PRs with more styles are welcome.
 
 ## Troubleshooting
