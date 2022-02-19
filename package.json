@@ -87,8 +87,8 @@
     }
   },
   "scripts": {
+    "deploy": "npm run compile && vsce:package && vsce:publish",
     "vscode:prepublish": "npm run compile",
-    "vsce": "vsce",
     "vsce:package": "vsce package --yarn",
     "vsce:publish": "vsce publish --yarn",
     "clean": "rimraf ./out",
