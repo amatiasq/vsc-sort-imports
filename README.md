@@ -71,6 +71,9 @@ By default, `sort-imports` comes with these styles:
 
 PRs with more styles are welcome.
 
+## Ignoring files
+Sometimes the imports in a certain file should not be sorted. To prevent import-sort from sorting a particular file, just add `// import-sort-ignore` or `/* import-sort-ignore */` to your file. Anwhere in the file is fine.
+
 ## Troubleshooting
 
 ### `parser.parseImports is not a function`
